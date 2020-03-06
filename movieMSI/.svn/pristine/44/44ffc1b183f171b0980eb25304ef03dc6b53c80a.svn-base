@@ -1,0 +1,64 @@
+var express = require('express');
+var router = express.Router();
+
+const {
+    addchip,
+    delchip,
+    getChipByPage,
+    getall,
+    getOneChip,
+    updateChip,
+    getOneChipByfilm
+} = require("../moveService/chipService")
+
+//根据分页获取排片渲染页面
+router.get('/', async function (req, res, next) {
+    const data = await getChipByPage(req.query);
+    res.send(data);
+});
+
+
+//新增排片
+router.post("/", async function (req, res, next) {
+    const data = await addchip(req.body);
+    res.send(data);
+})
+
+
+//删除排片
+router.delete("/:_id", async function (req, res, next) {
+    const data = await delchip(req.params);
+    res.send(data);
+})
+
+
+//获取数据库所有排片
+router.get('/getAllChip', async function (req, res, next) {
+    const data = await getall();
+    res.send(data);
+});
+
+//通过id去获取一个场次
+router.get("/:_id", async function (req, res, next) {
+    const _id = req.params;
+    // console.log(getOne)
+    const data = await getOneChip(_id);
+    res.send(data)
+})
+
+//确认修改事件，通过id去修改一个场次
+router.patch("/", async function (req, res, next) {
+    // console.log(1111)
+    res.send(await updateChip(req.body))
+})
+
+//查询事件。通过电影的Id俩查询已经排了此电影的影院
+
+router.post("/:_id", async function (req, res, next) {
+    const _id = req.params;
+    // console.log(_id)
+    const data = await getOneChipByfilm(_id);
+    res.send(data)
+})
+
+module.exports = router;

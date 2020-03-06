@@ -1,0 +1,8 @@
+var express = require('express'); 
+var router = express.Router();
+const {addCinemaServis}=require("../moveService/cinemaServes")
+/* GET home page. */
+router.post('/addcinema',async function(req, res, next){
+res.send(await addCinemaServis(req.body));
+});
+module.exports = router;

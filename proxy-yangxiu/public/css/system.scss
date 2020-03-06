@@ -1,0 +1,2513 @@
+@charset "utf-8";
+@mixin wh($w, $h) {
+    width: $w;
+    height: $h;
+}
+
+$fs:14px;
+$c:#9f9c9c;
+a {
+    text-decoration: none;
+    color: black;
+}
+
+body {
+    position: relative;
+}
+
+.cat {
+    position: fixed;
+    right: 0px;
+    bottom: 20%;
+}
+
+li {
+    list-style: none;
+}
+
+//登录
+#login {
+    header {
+        width: 874px;
+        margin: 36px auto;
+    }
+    .denglu {
+        width: 874px;
+        margin: 0 auto;
+        display: flex;
+        .picture {
+            margin: 0px 56px;
+        }
+        .suk {
+            a {
+                &:nth-of-type(1) {
+                    margin-right: 98px;
+                    font-size: 16px;
+                    color: rgb(102, 102, 102);
+                }
+            }
+            a {
+                color: rgb(102, 102, 102);
+                font-size: 14px;
+                i {
+                    display: inline-block;
+                    width: 12px;
+                    height: 14px;
+                    vertical-align: bottom;
+                    background: url("../images/sprite_webpage.png");
+                    background-position: -14px -60px;
+                }
+            }
+            form {
+                p {
+                    position: relative;
+                    display: inline-block;
+                    margin: 16px 0px;
+                    &:nth-of-type(3) {
+                        margin: 0px;
+                        label {
+                            color: black;
+                            font-size: 14px;
+                        }
+                        a {
+                            font-size: 14px;
+                            color: red;
+                            margin: 0px;
+                            margin-left: 90px;
+                        }
+                    }
+                    &:nth-of-type(4) {
+                        margin-bottom: 8px;
+                        button {
+                            width: 278px;
+                            height: 36px;
+                            color: white;
+                            border: none;
+                            background-color: #e32a2f;
+                        }
+                    }
+                    &:nth-of-type(5) {
+                        margin-top: 8px;
+                        span {
+                            color: rgb(102, 102, 102);
+                        }
+                        a {
+                            color: red;
+                        }
+                    }
+                    .input1 {
+                        width: 278px;
+                        height: 36px;
+                        padding-left: 20px;
+                        box-sizing: border-box;
+                        outline: none;
+                        &:focus {
+                            border: 1px solid #e32a2f;
+                        }
+                    }
+                    .img1 {
+                        position: absolute;
+                        top: 12px;
+                        left: 1px;
+                    }
+                }
+            }
+        }
+    }
+    footer {
+        width: 874px;
+        margin: 0 auto;
+        margin-top: 80px;
+        margin-bottom: 380px;
+        text-align: center;
+        a {
+            font-size: 14px;
+            color: rgb(102, 102, 102);
+        }
+    }
+}
+
+//注册
+#register {
+    header {
+        width: 100%;
+        border-bottom: 3px solid red;
+        margin-bottom: 36px;
+        .logo {
+            // width: 513px;
+            margin: 0 auto;
+            margin-left: 36%;
+        }
+    }
+    .zhuce {
+        width: 514px;
+        margin-left: 40%;
+        height: 328px; //    background-color: palegreen;
+        margin-bottom: 26px;
+        form {
+            .sjh {
+                width: 260px;
+                padding-left: 10px;
+                box-sizing: border-box;
+                height: 36px;
+                outline: none; //   border: none;
+                &:focus {
+                    border: 1px solid #e32a2f;
+                }
+            }
+            p {
+                margin: 0px;
+                margin-bottom: 10px;
+                label {
+                    display: inline-block;
+                    width: 100px;
+                    text-align: right;
+                }
+                a {
+                    font-size: 12px;
+                    color: rgb(102, 102, 102);
+                }
+                span {
+                    display: inline-block;
+                    height: 20px;
+                    width: 84px;
+                    color: white;
+                    background-color: #eeeeee;
+                    text-align: center;
+                    &:nth-of-type(1) {
+                        margin-left: 106px;
+                    }
+                }
+                button {
+                    margin-left: 106px;
+                }
+            }
+            p:nth-of-type(7)>button {
+                width: 182px;
+                height: 34px;
+                color: white; // outline: none;
+                border: #e32a2f;
+                background-color: #e7353a;
+            }
+            div {
+                margin-left: 106px;
+                a {
+                    color: #e7353a;
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+    footer {
+        width: 100%;
+        border-top: 1px solid #eeeeee;
+        text-align: center;
+        margin-bottom: 462px;
+        a {
+            display: inline-block;
+            color: rgb(102, 102, 102);
+            font-size: 14px;
+            margin-top: 14px;
+            margin-left: 766px;
+        }
+    }
+}
+
+// 头部
+#content {
+    header {
+        @include wh(1192px,
+        80px);
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        .left {
+            @include wh(602px,
+            80px);
+            display: flex;
+            justify-content: space-between;
+            .logo {
+                display: flex;
+                align-items: center;
+                height: 80px;
+                span {
+                    margin-left: 18px;
+                }
+                i {
+                    display: inline-block;
+                    @include wh(12px,
+                    8px);
+                    background: url("../images/sprite_webpage.png");
+                    background-position: 0px -62px;
+                }
+            }
+            .daohang {
+                @include wh(340px,
+                80px);
+                display: flex;
+                justify-content: space-evenly;
+                // a.selected{
+                //     background-color: #ef4238;
+                //     color: white;
+                // }
+                a {
+                    display: inline-block;
+                    @include wh(82px,
+                    80px);
+                    text-align: center;
+                    line-height: 80px;
+                    // &:hover {
+                    //     color: #ef4238;
+                    // }
+                    &:active {
+                        background-color: #ef4238;
+                        color: white;
+                    }
+                }
+            }
+        }
+        /*头部右侧*/
+        .right {
+            @include wh(488px,
+            80px);
+            position: relative;
+            display: flex;
+            align-items: center;
+            .input-yingyuan {
+                @include wh(238px,
+                42px);
+                padding-left: 10px;
+                padding-right: 44px;
+                border-radius: 21px;
+                margin-right: 14px;
+                box-sizing: border-box;
+                outline: none;
+            }
+            i:nth-of-type(1) {
+                display: inline-block;
+                @include wh(42px,
+                42px);
+                background: url("../images/sprite_webpage.png");
+                background-position: 0px 0px;
+                position: absolute;
+                right: 250px;
+            }
+            i:nth-of-type(2) {
+                display: inline-block;
+                @include wh(12px,
+                8px);
+                background: url("../images/sprite_webpage.png");
+                background-position: 0px -62px;
+            }
+            .qiehuan {
+                position: relative;
+                &:hover .xuanzhe {
+                    display: block;
+                }
+                img {
+                    width: 36px;
+                    margin-right: 4px;
+                }
+                .xuanzhe {
+                    display: flex;
+                    flex-direction: column;
+                    position: absolute;
+                    display: none;
+                    span {
+                        width: 80px;
+                        height: 30px;
+                        line-height: 30px;
+                        border-radius: 8px;
+                        display: inline-block;
+                        background-color: red;
+                        color: white;
+                        text-align: center;
+                        margin-bottom: 6px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// 脚部
+#content {
+    footer {
+        @include wh(100%,
+        150px);
+        background-color: #262426;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        a {
+            color: #606164;
+        }
+        p {
+            margin: 0px;
+            color: #606164;
+        }
+    }
+}
+
+//首页
+#movie_shouye {
+    /*郭敬明大图*/
+    .datu {
+        @include wh(100%,
+        503px);
+        border-top: 1px solid rgb(215, 215, 215);
+        background-image: url("../images/shouye1.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        margin-bottom: 80px;
+        .xiaotu {
+            @include wh(1110px,
+            126px);
+            background-color: #ef4238;
+            display: flex;
+            .jiantou {
+                @include wh(57px,
+                100%); // background-color: aqua;
+                display: flex;
+                align-items: center;
+                background-color: white;
+            }
+            .xiaotufenlei {
+                @include wh(1000px,
+                100%);
+                background-color: white;
+                display: flex;
+                justify-content: space-between;
+                img {
+                    outline: 3px solid white;
+                    margin: 5px 0px;
+                    &:hover {
+                        outline: 3px solid #ef4238;
+                    }
+                }
+            }
+        }
+    }
+    /*正在热映*/
+    $c:#ef4238;
+    .reying {
+        @include wh(1190px,
+        610px);
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        .reying-left {
+            @include wh(744px,
+            610px);
+            .reyingDH {
+                @include wh(744px,
+                36px);
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                span {
+                    color: $c;
+                    font-size: 22px;
+                }
+                a {
+                    color: $c;
+                }
+            }
+            /*热映明细*/
+            .reyingMX {
+                @include wh(744px,
+                292px);
+                display: flex;
+                justify-content: space-between;
+                .reyingMXx {
+                    @include wh(162px,
+                    260px);
+                    border: 1px solid #efefef;
+                    margin: 14px 0px;
+                    &:hover {
+                        background-color: #ef4238;
+                    }
+                    &:hover a {
+                        color: white;
+                    }
+                    p {
+                        @include wh(100%,
+                        36px);
+                        display: flex;
+                        justify-content: center;
+                        margin: 0px;
+                        align-items: center;
+                        a {
+                            color: $c;
+                            font-size: 18px;
+                        }
+                    }
+                }
+            }
+        } // 热映右边
+        .reying-right {
+            @include wh(368px,
+            610px); // background-color: darkgoldenrod;
+            p {
+                margin: 0px;
+                font-size: 22px;
+                color: $c;
+                @include wh(100%,
+                36px);
+                display: flex;
+                align-items: center;
+                margin-bottom: 14px;
+            }
+            .piaofang1 {
+                @include wh(100%,
+                82px);
+                border: 1px solid #efefef;
+                display: flex;
+                &:hover {
+                    background-color: rgba(70, 70, 74, 0.2);
+                }
+                .wenzi {
+                    margin-left: 10px;
+                    p {
+                        margin: 0px;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        a {
+                            font-size: 18px;
+                        }
+                    }
+                    span {
+                        font-size: 14px;
+                        color: $c;
+                    }
+                }
+            } //   票房排名
+            .paiming {
+                @include wh(100%,
+                24px); // background-color: thistle;
+                margin: 14px 0px;
+                display: flex;
+                justify-content: space-between;
+                &:hover {
+                    background-color: rgba(70, 70, 74, 0.2);
+                }
+                i {
+                    margin: 0px 8px;
+                    font-size: 18px;
+                    color: $c;
+                }
+                a {
+                    flex-grow: 1;
+                    font-size: 18px;
+                    margin-left: 4px;
+                }
+                span {
+                    font-size: 14px;
+                    color: $c;
+                }
+            }
+            .pianming4 {
+                i {
+                    color: #9999a2;
+                }
+            } // 今日大盘
+            .dapan {
+                @include wh(100%,
+                106px);
+                box-sizing: border-box; // background-color: palevioletred;
+                border: 1px solid #efefef;
+                margin-top: 28px;
+                display: flex;
+                .dapanleft {
+                    @include wh(42px,
+                    106px);
+                    background-color: #ef4238;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-around;
+                    align-items: center; // margin-right: 10px;
+                    a {
+                        font-size: 20px;
+                        color: white;
+                    }
+                }
+                .dapanright {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    padding: 0px 5px;
+                    p {
+                        margin: 0px;
+                        display: flex;
+                        justify-content: space-between;
+                        font-size: 0px;
+                        margin-bottom: 10px;
+                        span {
+                            font-size: 24px;
+                            color: $c;
+                            span {
+                                font-size: 14px;
+                            }
+                        }
+                        a {
+                            font-size: 14px;
+                            color: $c;
+                        }
+                    }
+                }
+                span {
+                    color: #ab9f9f;
+                }
+            }
+        }
+    } // 即将上映明细
+    .shangying {
+        height: 706px;
+        margin-top: 72px; // 即将上映明细左边
+        .shangying-left {
+            height: 706px;
+            .shangyingDH {
+                span {
+                    color: #2d98f3;
+                }
+                a {
+                    color: #2d98f3;
+                }
+            }
+            .shangyingMX {
+                @include wh(744px,
+                328px);
+                display: flex;
+                justify-content: space-between;
+                .shangyingMXx {
+                    @include wh(162px,
+                    326px);
+                    margin: 34px 0px;
+                    background-color: transparent;
+                    border: none;
+                    &:hover {
+                        background-color: rgba(70, 70, 74, 0.2);
+                    }
+                    &:hover>a {
+                        color: #2d98f3;
+                    }
+                    .shangyingMXxs {
+                        border: 1px solid #efefef;
+                        &:hover>p>a:nth-of-type(2) {
+                            background-color: #2d98f3;
+                            color: white;
+                        }
+                        span {
+                            display: inline-block;
+                            color: #feb83e;
+                            @include wh(162px,
+                            30px);
+                            padding-left: 6px; // display: flex;
+                            // justify-content: center;
+                        }
+                        p {
+                            @include wh(162px,
+                            30px);
+                            margin: 0px;
+                            a {
+                                display: inline-block;
+                                @include wh(50%,
+                                30px);
+                                color: #c2a599;
+                                text-align: center;
+                                line-height: 30px;
+                                font-size: 16px;
+                                &:nth-of-type(1) {
+                                    border-right: 1px dashed #9999a2;
+                                }
+                            }
+                            span {
+                                @include wh(162px,
+                                30px);
+                                color: #c2a599;
+                                text-align: center;
+                            }
+                        }
+                    }
+                }
+                a {
+                    display: inline-block;
+                    @include wh(162px,
+                    30px);
+                    color: #c2a599;
+                    text-align: center;
+                    line-height: 30px;
+                }
+            }
+        } // 即将上映明细右边
+        .shangying-right {
+            @include wh(368px,
+            706px); // background-color: teal;
+            // 最受期待名字
+            .qidai {
+                @include wh(100%,
+                32px);
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                color: #ffb400;
+                margin-bottom: 20px;
+                span {
+                    font-size: 22px;
+                }
+                a {
+                    color: #ffb400;
+                }
+            }
+            .taohua {
+                @include wh(100%,
+                198px);
+                display: flex;
+                align-items: center;
+                border: 1px solid #efefef;
+                &:hover {
+                    background-color: rgba(70, 70, 74, 0.2);
+                }
+                &:hover a {
+                    color: #ef4238;
+                }
+                p {
+                    margin: 0px;
+                    &:nth-of-type(2) {
+                        color: #c2a599;
+                        font-size: 14px;
+                    }
+                    a {
+                        font-size: 18px;
+                    }
+                }
+                span {
+                    color: #ffc400;
+                }
+            } // 奇异博士
+            .bosi-lu {
+                @include wh(100%,
+                184px);
+                display: flex;
+                margin: 10px 0px;
+                justify-content: space-between;
+                .bosi {
+                    @include wh(172px,
+                    184px);
+                    &:hover {
+                        background-color: rgba(70, 70, 74, 0.2);
+                    }
+                    &:hover a {
+                        color: #ef4238;
+                    } // display: flex;
+                    .js {
+                        margin-left: 10px;
+                        a {
+                            font-size: 20px;
+                        }
+                        p {
+                            margin: 0px;
+                            font-size: 14px;
+                            color: #ffc400;
+                        }
+                    }
+                }
+            }
+        }
+    } // 热播电影
+    .rebo {
+        @include wh(1190px,
+        556px); // background-color: #2d98f3;
+        margin-top: 88px;
+        margin-bottom: 100px;
+        .rebo-left {
+            .reyingDH {
+                margin-bottom: 20px;
+                span {
+                    a {
+                        color: black;
+                        font-size: 14px;
+                        &:active {
+                            background-color: #ef4238;
+                            color: white;
+                        }
+                    }
+                }
+            }
+            .rebomingxi {
+                @include wh(100%,
+                262px);
+                display: flex;
+                justify-content: space-between;
+                margin: 12px 0px;
+                img {
+                    &:hover {
+                        box-shadow: 5px 5px 5px #ef4238;
+                    }
+                }
+            }
+        }
+        .rebo-right {
+            p {
+                color: #ffb400;
+                a {
+                    color: #ffb400;
+                }
+            }
+            .wenzi1 {
+                p {
+                    a {
+                        color: black;
+                    }
+                }
+                span {
+                    color: #ffb400;
+                }
+            }
+            .reboPM {
+                i {
+                    color: #ffb400;
+                }
+                span {
+                    color: #ffb400;
+                }
+            }
+            .reboPM4 {
+                span {
+                    color: #ffb400;
+                }
+            }
+        }
+    }
+}
+
+//榜单
+#movie_bangdan {
+    nav {
+        @include wh(100%,
+        62px);
+        background-color: #47464a;
+        margin-bottom: 70px;
+        .daohang {
+            @include wh(722px,
+            100%);
+            margin: 0 auto; // background-color: #ef4238;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            a {
+                font-size: 18px;
+                color: #999999;
+                &:hover:after {
+                    display: block;
+                }
+                &::after {
+                    display: none;
+                    content: "";
+                    border-bottom: 12px solid white;
+                    border-right: 12px solid transparent;
+                    border-top: 12px solid transparent;
+                    border-left: 12px solid transparent;
+                    position: absolute;
+                    left: 41px;
+                    top: 38px;
+                }
+                &:nth-of-type(2)::after {
+                    left: 191px;
+                }
+                &:nth-of-type(3)::after {
+                    left: 357px;
+                }
+                &:nth-of-type(4)::after {
+                    left: 510px;
+                }
+                &:nth-of-type(5)::after {
+                    left: 670px;
+                }
+                &:hover {
+                    color: #ef4243;
+                }
+            }
+        }
+    }
+    /*更新时间*/
+    .shijian {
+        @include wh(100%,
+        40px); // background-color: #ef4243;
+        text-align: center;
+        color: #9f9c9c;
+        margin-bottom: 36px;
+        p {
+            margin: 0px;
+            font-size: 14px;
+            span {
+                color: #ffcd4f;
+            }
+        }
+    }
+    /*榜单明细*/
+    .bangdan {
+        @include wh(960px,
+        224px); // background-color: #ef4243;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 30px;
+        &:hover .jieshao {
+            background-color: rgba(70, 70, 74, 0.2);
+        }
+        .biaoji {
+            @include wh(84px,
+            100%);
+            display: flex;
+            align-items: center;
+        }
+    }
+    .biaoji2 {
+        i {
+            @include wh(50px,
+            50px);
+            background-color: #f7f7f7;
+            font-size: 18px;
+            color: $c;
+            text-align: center;
+            line-height: 50px;
+        }
+    }
+    .jieshao {
+        @include wh(756px,
+        100%);
+        display: flex;
+        .wenzi {
+            @include wh(570px,
+            100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-left: 28px;
+            flex-grow: 1;
+            font-size: 0px;
+            border-bottom: 1px solid $c;
+            p {
+                margin: 0px;
+                &:nth-of-type(1) {
+                    margin-bottom: 20px;
+                    &:hover {
+                        color: #ef4238;
+                    }
+                    a {
+                        font-size: 20px;
+                        &:active {
+                            color: #ef4238;
+                        }
+                    }
+                }
+                &:nth-of-type(2) {
+                    a {
+                        font-size: $fs;
+                    }
+                }
+            }
+            span {
+                font-size: $fs;
+                color: $c;
+            }
+        }
+        .pingfen {
+            @include wh(70px,
+            100%);
+            font-size: 0px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid $c;
+            span {
+                i {
+                    font-size: 40px;
+                    color: #ffb400;
+                    &:nth-of-type(2) {
+                        font-size: 20px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+//电影
+#movie_dianying {
+    /*正在热映的导航*/
+    nav {
+        @include wh(100%,
+        60px);
+        background-color: #47464a;
+        display: flex;
+        margin-bottom: 36px;
+        .nav-reying {
+            @include wh(356px,
+            60px);
+            margin: 0 auto; // background-color: blueviolet;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            a {
+                display: inline-block;
+                width: 116px;
+                height: 60px;
+                line-height: 60px;
+                text-align: center;
+                color: white;
+                position: relative;
+                &::after {
+                    display: none;
+                    content: ""; // width: 15px;
+                    border-bottom: 12px solid white;
+                    border-right: 12px solid transparent;
+                    border-top: 12px solid transparent;
+                    border-left: 12px solid transparent;
+                    position: absolute;
+                    bottom: 0px;
+                    left: 52px;
+                }
+                &:hover:after {
+                    display: block;
+                    z-index: 1；
+                }
+                &:hover {
+                    color: #ef4238;
+                }
+            }
+        }
+    }
+    /*热映类型区域年代*/
+    .leixing {
+        @include wh(1120px,
+        203px); // background-color: aqua;
+        margin: 0 auto;
+        margin-bottom: 38px;
+        border: 1px solid #e5e5e5;
+        .leixing1 {
+            @include wh(1080px,
+            74px);
+            display: flex; // background-color: aquamarine;
+            border-bottom: 1px dashed #e5e5e5;
+            margin: 0px 20px;
+        }
+        span:nth-of-type(1) {
+            display: inline-block;
+            @include wh(78px,
+            24px);
+            margin-top: 14px; // background-color: #ef4238;
+            font-size: 14px;
+        }
+        .quyu span:nth-of-type(1) {
+            @include wh(60px,
+            24px);
+        }
+        span:nth-of-type(2) {
+            display: flex;
+            flex-wrap: wrap;
+            align-content: center;
+            a {
+                padding: 0px 8px; // height: 24px;
+                font-size: 14px;
+                margin-right: 14px;
+                margin-bottom: 4px;
+                text-align: center;
+                &:active {
+                    background-color: #ef4238;
+                    border-radius: 16px;
+                    color: white;
+                }
+            }
+        }
+        .niandai {
+            height: 52px;
+            display: flex;
+            align-items: center;
+            border: none;
+            span:nth-of-type(1) {
+                width: 56px;
+            }
+            span {
+                margin-top: 0px;
+            }
+        }
+    }
+    /* 排序*/
+    .px {
+        width: 1120px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        .px1 {
+            position: relative;
+            input {
+                display: none;
+                &:checked+label::before {
+                    background-color: #f34d41;
+                }
+                &:checked+label::after {
+                    background-color: white;
+                }
+            }
+            label {
+                margin-right: 24px;
+                padding-left: 20px; // font-size: 14px;
+                position: relative;
+                &::before {
+                    display: inline-block;
+                    content: "";
+                    @include wh(16px,
+                    16px);
+                    border-radius: 50%;
+                    border: 1px solid #47464a;
+                    position: absolute;
+                    left: -5px;
+                    top: 0px;
+                }
+                &::after {
+                    display: inline-block;
+                    content: "";
+                    @include wh(8px,
+                    8px);
+                    border-radius: 50%;
+                    border: 1px solid #47464a;
+                    position: absolute;
+                    top: 4px;
+                    left: -1px;
+                }
+            }
+        }
+    }
+    .xiangqing {
+        width: 1120px;
+        margin: 0 auto; // background-color: #ffd477;
+        margin-top: 16px;
+        display: flex;
+        flex-wrap: wrap; // .dianyingda {
+        // @include wh(1120px,
+        // 284px);
+        // display: flex;
+        // justify-content: space-between;
+        // margin-bottom: 28px;
+        .dianying {
+            @include wh(160px,
+            284px); // background-color: mediumpurple;
+            margin-right: 64px; // margin-left: 14px;
+            margin-bottom: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            &:hover {
+                background-color: rgba(224, 220, 221, 0.5);
+            }
+            &:hover a {
+                color: #ef4238;
+            }
+            p {
+                margin: 0px;
+                color: #ffd477;
+                font-size: 0px;
+                a {
+                    font-size: 14px;
+                    &:hover {
+                        color: #ef4238;
+                    }
+                }
+                i {
+                    font-size: 16px;
+                    &:nth-of-type(2) {
+                        font-size: 14px;
+                    }
+                }
+                span {
+                    font-size: 12px;
+                }
+            }
+        } // }
+    }
+    /*分页符号*/
+    .fenye {
+        @include wh(436px,
+        36px);
+        margin: 0 auto;
+        margin-bottom: 94px; // border: 1px solid #d8d8d8;
+        display: flex;
+        justify-content: space-between;
+        a {
+            display: inline-block;
+            color: black;
+            padding: 0px 14px;
+            border: 1px solid #d8d8d8;
+            height: 36px;
+            box-sizing: border-box; // background-color: blue;
+            display: flex;
+            align-items: center;
+            &:active {
+                background-color: #ef4238;
+                color: white;
+            }
+        }
+    }
+}
+
+//咨询
+#movie_zixun {
+    // 主体
+    .zhuti {
+        width: 1192px; // @include wh(1192px,80px);
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between; // 主体左侧
+        .zhuti-left {
+            width: 740px;
+            .biaoti {
+                @include wh(100%,
+                244px);
+                margin-bottom: 24px; // background-color: aquamarine;
+                h1 {
+                    margin: 0px;
+                    font-size: 2.3em;
+                    margin-bottom: 24px;
+                }
+                p {
+                    margin-top: 34px;
+                    color: #333333;
+                }
+                span {
+                    color: #999999;
+                }
+                a {
+                    color: #999999;
+                }
+            }
+            p {
+                color: #333333;
+                margin-top: 32px;
+                margin-bottom: 50px;
+                span {
+                    color: #e33737;
+                }
+            }
+            .p3 {
+                margin-bottom: 40px;
+            }
+            .p4 {
+                margin-bottom: 34px
+            }
+            .p5 {
+                margin-bottom: 34px
+            }
+            .p6 {
+                margin-bottom: 0px
+            }
+            h2 {
+                margin-bottom: 40px;
+                color: #e33737;
+                font-size: 1.9em;
+            }
+            .maoyan {
+                font-size: 16px;
+                font-weight: 600;
+                margin-bottom: 30px;
+            }
+            .dongzuo {
+                margin-top: 30px;
+                margin-bottom: 48px;
+            }
+            .tp {
+                display: inline-block;
+                width: 100%;
+                text-align: center;
+            }
+            .maoyan2 {
+                margin-top: 32px;
+            }
+            .maoyan6 {
+                margin-top: 36px;
+            }
+            .wen {
+                margin-bottom: 54px;
+            } //  分享点赞
+            .fenxiang {
+                @include wh(194px,
+                50px); // background-color: forestgreen;
+                margin: 0 auto;
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 36px;
+                .dianzan {
+                    @include wh(80px,
+                    46px);
+                    border: 1px solid #e33737;
+                    border-radius: 23px;
+                    text-align: center;
+                    color: #e33737;
+                    line-height: 46px;
+                    i {
+                        display: inline-block;
+                        @include wh(24px,
+                        22px);
+                        background-image: url("../images/sprite_webpage.png");
+                        background-position: -52px -54px;
+                    }
+                }
+                .dianzan1 {
+                    i {
+                        @include wh(24px,
+                        15px);
+                        background-position: -138px -60px;
+                    }
+                }
+            } //  热门评论
+            .remenduanping {
+                // @include wh(100%,158px);
+                width: 100%;
+                margin-bottom: 22px; // background-color: paleturquoise;
+                .dp-top {
+                    @include wh(100%px,
+                    58px);
+                    display: flex;
+                    position: relative;
+                    align-items: center;
+                    a {
+                        img {
+                            @include wh(50px,
+                            50px);
+                            border-radius: 50%;
+                        }
+                    }
+                    .huiyuan {
+                        position: absolute;
+                        top: 34px;
+                        left: 34px;
+                    }
+                    .names {
+                        flex-grow: 1;
+                        margin-left: 20px;
+                        span {
+                            border: 1px solid #7cc6f9;
+                            color: #7cc6f9;
+                        }
+                        p {
+                            margin: 0px;
+                            color: #999999;
+                        }
+                    }
+                    .dianzan {
+                        @include wh(92px,
+                        18px);
+                        color: #999999;
+                        i {
+                            display: inline-block;
+                            @include wh(18px,
+                            18px);
+                            background-image: url("../images/sprite_webpage.png");
+                            background-position: -30px -55px;
+                        }
+                    }
+                }
+                .dp-bottom {
+                    // @include wh(665px,98px);
+                    width: 665px; // background-color: fuchsia;
+                    margin-left: 70px;
+                    padding-bottom: 32px;
+                    border-bottom: 1px solid #e5e5e5;
+                    p {
+                        margin: 0px;
+                        font-size: 14px;
+                        margin-top: 20px;
+                        color: #666666;
+                        margin-bottom: 20px;
+                    }
+                    .huifu {
+                        background-color: #eeeeee;
+                        padding: 15px;
+                        span {
+                            color: #9b9999;
+                        }
+                        p {
+                            margin-top: 4px;
+                        }
+                    }
+                }
+            }
+            .rmpl-last {
+                margin-bottom: 60px;
+            }
+            .timu {
+                font-size: 20px;
+                padding-left: 6px;
+                border-left: 4px solid #ef4238;
+                margin-bottom: 42px;
+            } // 查看更多回复
+            .chakanhuifu {
+                width: 100%;
+                margin-top: 28px;
+                text-align: center;
+                margin-bottom: 154px;
+                a {
+                    font-size: 16px;
+                    color: #e33737;
+                }
+            }
+        }
+        .zhuti-right {
+            width: 358px;
+            p {
+                // @include wh(100%,22px);
+                border-left: 4px solid #ef4238;
+                padding: 0px 6px;
+                margin-bottom: 14px;
+            }
+            .dianying {
+                @include wh(110px,
+                206px); // background-color: darkgreen;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                a {
+                    &:nth-last-of-type(1) {
+                        display: inline-block;
+                        padding: 9px 0px;
+                    }
+                }
+                i {
+                    color: #ffb400;
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+}
+
+//详情
+#movie_xiangqing {
+    /*大图*/
+    .datu {
+        @include wh(100%,
+        380px);
+        background-image: url("../images/banner_bg.f7fd103e3b8c16b6f449cce43fc57f45.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        margin-bottom: 80px;
+        .datu-zj {
+            @include wh(1192px,
+            380px);
+            margin: 0 auto;
+            display: flex;
+            align-items: flex-end;
+            position: relative; //    白色底框
+            .baise {
+                @include wh(100%,
+                30px);
+                background-color: white;
+            }
+            .neirong {
+                @include wh(1146px,
+                280px);
+                position: absolute; // background-color: teal;
+                bottom: 30px;
+                left: 24px;
+                display: flex;
+                .mingzi {
+                    @include wh(536px,
+                    100%);
+                    display: flex;
+                    flex-direction: column;
+                    color: white;
+                    margin-top: 28px;
+                    margin-left: 20px;
+                    a {
+                        font-size: 26px;
+                        color: white;
+                        &:nth-of-type(2) {
+                            font-size: 18px;
+                            margin-bottom: 20px;
+                        }
+                    }
+                    span {
+                        margin-bottom: 10px;
+                    }
+                    .xiangkan {
+                        @include wh(256px,
+                        40px);
+                        display: flex;
+                        justify-content: space-between;
+                        span {
+                            @include wh(124px,
+                            40px);
+                            background-color: rgba(255, 255, 255, 0.3);
+                            line-height: 40px;
+                            text-align: center;
+                            &:active {
+                                background-color: #df2d2d; // color: #df2d2d;
+                            }
+                            &:nth-of-type(2) i {
+                                display: inline-block;
+                                @include wh(16px,
+                                15px);
+                                background-image: url("../images/sprite_webpage.png");
+                                background-position: -94px -59px;
+                            }
+                            i {
+                                display: inline-block;
+                                @include wh(16px,
+                                15px);
+                                background-image: url("../images/sprite_webpage.png");
+                                background-position: -74px -59px;
+                            }
+                        }
+                    }
+                } //   评分
+                .pingfen {
+                    @include wh(340px,
+                    100%);
+                    display: flex;
+                    flex-direction: column;
+                    box-sizing: border-box;
+                    ul {
+                        padding: 0px;
+                        @include wh(100%,
+                        90px);
+                        display: flex;
+                        justify-content: space-between;
+                        margin-top: 84px;
+                        li {
+                            @include wh(104px,
+                            90px);
+                            background-color: rgba(255, 255, 255, 0.1);
+                            border: 1px solid #d8d8d8;
+                            text-align: center;
+                            position: relative;
+                            &:nth-of-type(3) {
+                                p {
+                                    color: white;
+                                    font-size: 14px;
+                                }
+                            }
+                            p {
+                                margin: 32px 0px 8px 0px;
+                                color: #ffc600;
+                                font-size: 18px;
+                            }
+                            a {
+                                color: #d1cfd7;
+                                font-size: 14px;
+                            }
+                            span {
+                                display: inline-block;
+                                @include wh(60px,
+                                20px);
+                                font-size: 14px;
+                                background-color: #ef4238;
+                                color: white;
+                                position: absolute;
+                                top: -8px;
+                                left: 22px;
+                            }
+                        }
+                    } //   立即购票
+                    .goupiao {
+                        @include wh(100%,
+                        50px);
+                        background-color: #df2d2d;
+                        text-align: center;
+                        line-height: 50px;
+                        a {
+                            color: white;
+                        }
+                    }
+                }
+            }
+        }
+    } // 大主体
+    .zhuti {
+        width: 1192px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        .zhuti-left {
+            width: 736px;
+            .jieshao {
+                @include wh(736px,
+                40px);
+                border-bottom: 1px solid #d8d8d8;
+                margin-bottom: 40px;
+                a {
+                    font-size: 18px;
+                    margin-right: 16px;
+                    display: inline-block;
+                    padding: 8px 0px;
+                    border-bottom: 1px solid transparent;
+                    &:hover {
+                        color: #df2d2d;
+                        border-bottom: 1px solid #df2d2d;
+                    }
+                }
+            } // 剧情介绍
+            .jjjs {
+                @include wh(736px,
+                170px); // background-color: aqua;
+                margin-bottom: 20px;
+                h4 {
+                    border-left: 4px solid #df2d2d;
+                    padding: 0px 6px;
+                }
+                p {
+                    color: #3f333f;
+                    font-size: 14px;
+                }
+            }
+            .renyuan {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                h4 {
+                    border-left: 4px solid #df2d2d;
+                    padding: 0px 6px;
+                }
+                a {
+                    color: #666666;
+                }
+            } // 演员和导演明细
+            .yanyuan {
+                @include wh(736px,
+                264px);
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 60px;
+                .yanyuan1 {
+                    @include wh(132px,
+                    264px); // &:hover{
+                    //     background-color: rgba(255,255,40,0.1);
+                    // }
+                    // background-color: gold;
+                    span:nth-of-type(2) {
+                        display: inline-block;
+                        text-align: center;
+                        font-size: 14px;
+                        color: #666666;
+                        width: 100%;
+                    }
+                    span {
+                        display: inline-block;
+                        @include wh(132px,
+                        36px);
+                    }
+                    p {
+                        margin: 0px;
+                        text-align: center;
+                        margin-top: 13px;
+                    }
+                }
+            } // 照片
+            .zhaopian {
+                @include wh(100%,
+                264px);
+                display: flex;
+                margin-bottom: 45px;
+                a {
+                    overflow: hidden;
+                    img {
+                        transition: all linear 0.5s;
+                        &:hover {
+                            transform: scale(1.1);
+                        }
+                    }
+                }
+                .zhaopian-right {
+                    @include wh(268px,
+                    264px);
+                    display: flex;
+                    flex-wrap: wrap;
+                    a {
+                        margin-left: 5px;
+                    }
+                }
+            } // 写短评
+            .xie {
+                a {
+                    display: inline-block;
+                    @include wh(68px,
+                    32px);
+                    border: 1px solid #df2d2d;
+                    text-align: center;
+                    line-height: 32px;
+                    color: #df2d2d;
+                    border-radius: 16px;
+                }
+            }
+            .remenduanping {
+                @include wh(100%,
+                158px);
+                margin-bottom: 18px; // background-color: paleturquoise;
+                .dp-top {
+                    @include wh(100%px,
+                    58px);
+                    display: flex;
+                    position: relative;
+                    align-items: center;
+                    a {
+                        img {
+                            @include wh(50px,
+                            50px);
+                            border-radius: 50%;
+                        }
+                    }
+                    .huiyuan {
+                        position: absolute;
+                        top: 34px;
+                        left: 34px;
+                    }
+                    .names {
+                        flex-grow: 1;
+                        margin-left: 20px;
+                        span {
+                            border: 1px solid #7cc6f9;
+                            color: #7cc6f9;
+                        }
+                        p {
+                            margin: 0px;
+                            color: #999999;
+                        }
+                    }
+                    .dianzan {
+                        @include wh(72px,
+                        18px);
+                        color: #999999;
+                        i {
+                            display: inline-block;
+                            @include wh(18px,
+                            18px);
+                            background-image: url("../images/sprite_webpage.png");
+                            background-position: -30px -55px;
+                        }
+                    }
+                }
+                .dp-bottom {
+                    @include wh(665px,
+                    98px); // background-color: fuchsia;
+                    margin-left: 70px;
+                    display: flex;
+                    align-items: center;
+                    border-bottom: 1px solid #e5e5e5;
+                    p {
+                        margin: 0px;
+                        font-size: 14px;
+                        color: #666666;
+                    }
+                }
+            }
+            .duanping3 {
+                @include wh(100%,
+                147px);
+                .dp-bottom {
+                    @include wh(665px,
+                    76px);
+                }
+            }
+            .duanping5 {
+                @include wh(100%,
+                180px);
+                .dp-bottom {
+                    @include wh(665px,
+                    130px);
+                }
+            }
+            .duping7 {
+                @include wh(100%,
+                266px);
+                .dp-bottom {
+                    @include wh(665px,
+                    220px);
+                }
+            }
+            .duanping10 {
+                margin-bottom: 140px;
+                .dp-bottom {
+                    border: none;
+                }
+            }
+        } // 右边
+        .zhuti-right {
+            width: 372px;
+            h4 {
+                border-left: 4px solid #df2d2d;
+                padding: 0px 6px;
+                margin-bottom: 13px;
+            } // 第一个资讯湄公河
+            .zixun1 {
+                @include wh(100%,
+                88px);
+                display: flex;
+                margin-bottom: 10px;
+                &:hover {
+                    background-color: rgba(70, 70, 74, 0.2);
+                }
+                .wenzi {
+                    p {
+                        margin: 0px 0px 22px 6px;
+                        font-size: 16px;
+                    }
+                    a {
+                        margin-left: 16px;
+                        font-size: 14px;
+                        color: #d8d8d8;
+                    }
+                    span {
+                        font-size: 14px;
+                        color: #d8d8d8;
+                    }
+                }
+            }
+            .zixunmao {
+                margin-bottom: 40px;
+            }
+            .dianying {
+                @include wh(100%,
+                206px); // background-color: #7cc6f9;
+                display: flex; // margin-bottom: 20px;
+                margin-top: 26px;
+                justify-content: space-between;
+                .xiangqing1 {
+                    @include wh(110px,
+                    206px);
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    &:hover {
+                        background-color: rgba(70, 70, 74, 0.2);
+                    }
+                    a {
+                        &:nth-last-of-type(1) {
+                            display: inline-block;
+                            margin: 10px 0px;
+                        }
+                    }
+                    i {
+                        color: #ffc600;
+                    }
+                }
+            }
+        }
+    }
+}
+
+//影院
+#movie_yingyuan {
+    // *大图*/ 
+    .datu {
+        @include wh(100%,
+        380px);
+        background-image: url("../images/banner_bg.f7fd103e3b8c16b6f449cce43fc57f45.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        margin-bottom: 80px;
+        .datu-zj {
+            @include wh(1192px,
+            380px);
+            margin: 0 auto;
+            display: flex;
+            align-items: flex-end;
+            position: relative; //    白色底框
+            .baise {
+                @include wh(100%,
+                30px);
+                background-color: white;
+            }
+            .neirong {
+                @include wh(1146px,
+                280px);
+                position: absolute; // background-color: teal;
+                bottom: 30px;
+                left: 24px;
+                display: flex;
+                .mingzi {
+                    @include wh(536px,
+                    100%);
+                    display: flex;
+                    flex-direction: column;
+                    color: white;
+                    margin-top: 28px;
+                    margin-left: 20px;
+                    a {
+                        font-size: 26px;
+                        color: white;
+                        &:nth-of-type(2) {
+                            font-size: 18px;
+                            margin-bottom: 20px;
+                        }
+                    }
+                    span {
+                        margin-bottom: 10px;
+                    }
+                    .xiangkan {
+                        @include wh(256px,
+                        40px);
+                        display: flex;
+                        justify-content: space-between;
+                        span {
+                            @include wh(124px,
+                            40px);
+                            background-color: rgba(255, 255, 255, 0.3);
+                            line-height: 40px;
+                            text-align: center;
+                            &:active {
+                                background-color: #df2d2d; // color: #df2d2d;
+                            }
+                            &:nth-of-type(2) i {
+                                display: inline-block;
+                                @include wh(16px,
+                                15px);
+                                background-image: url("../images/sprite_webpage.png");
+                                background-position: -94px -59px;
+                            }
+                            i {
+                                display: inline-block;
+                                @include wh(16px,
+                                15px);
+                                background-image: url("../images/sprite_webpage.png");
+                                background-position: -74px -59px;
+                            }
+                        }
+                    }
+                } //   评分
+                .pingfen {
+                    @include wh(340px,
+                    100%);
+                    display: flex;
+                    flex-direction: column;
+                    box-sizing: border-box;
+                    ul {
+                        padding: 0px;
+                        @include wh(100%,
+                        90px);
+                        display: flex;
+                        justify-content: space-between;
+                        margin-top: 84px;
+                        li {
+                            @include wh(104px,
+                            90px);
+                            background-color: rgba(255, 255, 255, 0.1);
+                            border: 1px solid #d8d8d8;
+                            text-align: center;
+                            position: relative;
+                            &:nth-of-type(3) {
+                                p {
+                                    color: white;
+                                    font-size: 14px;
+                                }
+                            }
+                            p {
+                                margin: 32px 0px 8px 0px;
+                                color: #ffc600;
+                                font-size: 18px;
+                            }
+                            a {
+                                color: #d1cfd7;
+                                font-size: 14px;
+                            }
+                            span {
+                                display: inline-block;
+                                @include wh(60px,
+                                20px);
+                                font-size: 14px;
+                                background-color: #ef4238;
+                                color: white;
+                                position: absolute;
+                                top: -8px;
+                                left: 22px;
+                            }
+                        }
+                    } //   立即购票
+                    .goupiao {
+                        // display: inline-block;
+                        @include wh(100%,
+                        50px);
+                        background-color: #df2d2d;
+                        text-align: center;
+                        line-height: 50px;
+                        a {
+                            color: white;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    /*热映类型区域年代*/
+    .leixing {
+        // @include wh(1120px,203px);
+        width: 1120px; // background-color: aqua;
+        margin: 0 auto;
+        margin-bottom: 38px;
+        border: 1px solid #e5e5e5;
+        .leixing1 {
+            @include wh(1080px,
+            74px);
+            display: flex; // background-color: aquamarine;
+            border-bottom: 1px dashed #e5e5e5;
+            margin: 0px 20px;
+        }
+        span:nth-of-type(1) {
+            display: inline-block;
+            @include wh(100px,
+            24px);
+            margin-top: 24px; // background-color: #ef4238;
+            font-size: 14px;
+        }
+        .quyu span:nth-of-type(1) {
+            // @include wh(60px,24px);
+        }
+        span:nth-of-type(2) {
+            display: flex;
+            flex-wrap: wrap;
+            border-bottom: 1px dashed #e5e5e5;
+            align-content: center;
+            a {
+                padding: 0px 8px; // height: 24px;
+                font-size: 14px;
+                margin-right: 14px;
+                margin-bottom: 4px;
+                text-align: center;
+                &:active {
+                    background-color: #ef4238;
+                    border-radius: 16px;
+                    color: white;
+                }
+            }
+        }
+        .niandai {
+            height: 52px;
+            display: flex;
+            align-items: center;
+            border: none;
+            span:nth-of-type(1) {
+                width: 80px;
+            }
+            span {
+                margin-top: 0px;
+            }
+        }
+    } // 影院列表
+    h3 {
+        border-left: 4px solid red;
+        width: 1120px;
+        padding-left: 10px;
+        margin: 0 auto;
+    }
+    .yingyuan {
+        width: 1120px;
+        margin: 0 auto;
+        .yingyuanliebiao {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 0px;
+            border-bottom: 1px dashed;
+            h4 {
+                margin: 10px;
+            }
+            .left {
+                .dizhi {
+                    color: #999999;
+                }
+            }
+            .right {
+                margin-top: 16px;
+                .goupiaoa {
+                    display: inline-block;
+                    font-size: 14px;
+                    height: 30px;
+                    line-height: 30px;
+                    padding: 0px 4px;
+                    background-color: #ef4238;
+                    border-radius: 6px;
+                    color: #e5e5e5;
+                }
+                span {
+                    color: #ef4238;
+                    margin-right: 20px;
+                }
+            }
+        }
+    }
+    /*分页符号*/
+    .fenye {
+        @include wh(436px,
+        36px);
+        margin: 94px auto;
+        display: flex;
+        justify-content: space-between;
+        a {
+            display: inline-block;
+            color: black;
+            padding: 0px 14px;
+            border: 1px solid #d8d8d8;
+            height: 36px;
+            box-sizing: border-box; // background-color: blue;
+            display: flex;
+            align-items: center;
+            &:active {
+                background-color: #ef4238;
+                color: white;
+            }
+        }
+    }
+}
+
+//全部影院
+#movie_yingyuanAll {
+    /*热映类型区域年代*/
+    .leixing {
+        @include wh(1120px,
+        203px); // background-color: aqua;
+        margin: 0 auto;
+        margin-bottom: 38px;
+        border: 1px solid #e5e5e5;
+        .leixing1 {
+            @include wh(1080px,
+            74px);
+            display: flex; // background-color: aquamarine;
+            border-bottom: 1px dashed #e5e5e5;
+            margin: 0px 20px;
+        }
+        span:nth-of-type(1) {
+            display: inline-block;
+            @include wh(78px,
+            24px);
+            margin-top: 14px; // background-color: #ef4238;
+            font-size: 14px;
+        }
+        .quyu span:nth-of-type(1) {
+            @include wh(80px,
+            24px);
+        }
+        span:nth-of-type(2) {
+            display: flex;
+            flex-wrap: wrap;
+            align-content: center;
+            a {
+                padding: 0px 8px; // height: 24px;
+                font-size: 14px;
+                margin-right: 14px;
+                margin-bottom: 4px;
+                text-align: center;
+                &:active {
+                    background-color: #ef4238;
+                    border-radius: 16px;
+                    color: white;
+                }
+            }
+        }
+        .niandai {
+            height: 52px;
+            display: flex;
+            align-items: center;
+            border: none;
+            span:nth-of-type(1) {
+                width: 70px;
+            }
+            span {
+                margin-top: 0px;
+            }
+        }
+    } // / 影院列表
+    .yingyuan {
+        width: 1120px;
+        margin: 0 auto;
+        h3 {
+            border-left: 4px solid red;
+            padding-left: 10px;
+        }
+        .yingyuanliebiao {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 0px;
+            border-bottom: 1px dashed;
+            h4 {
+                margin: 10px;
+            }
+            .left {
+                .dizhi {
+                    color: #999999;
+                }
+            }
+            .right {
+                margin-top: 16px;
+                width: 200px;
+                .goupiaoa {
+                    display: inline-block;
+                    @include wh(100px,
+                    30px);
+                    background-color: #df2d2d;
+                    text-align: center;
+                    line-height: 30px;
+                    color: white;
+                    border-radius: 8px;
+                }
+                span {
+                    color: #ef4238;
+                    margin-right: 20px;
+                }
+            }
+        }
+    }
+    /*分页符号*/
+    .fenye {
+        @include wh(436px,
+        36px);
+        margin: 94px auto;
+        display: flex;
+        justify-content: space-between;
+        a {
+            display: inline-block;
+            color: black;
+            padding: 0px 14px;
+            border: 1px solid #d8d8d8;
+            height: 36px;
+            box-sizing: border-box; // background-color: blue;
+            display: flex;
+            align-items: center;
+            &:active {
+                background-color: #ef4238;
+                color: white;
+            }
+        }
+    }
+}
+
+//一个影城里的一个电影的排片
+#movie_yingchengOne {
+    /*大图*/
+    .datu {
+        @include wh(100%,
+        380px);
+        background-image: url("../images/banner_bg.f7fd103e3b8c16b6f449cce43fc57f45.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        margin-bottom: 80px;
+        position: relative;
+        .zhuti {
+            position: absolute;
+            top: 120px;
+            left: 142px;
+            display: flex;
+            img {
+                margin-right: 20px;
+            }
+            .neirong {
+                display: flex;
+                flex-direction: column;
+                color: white;
+                .title {
+                    font-size: 26px;
+                }
+                .jiejie {
+                    margin-bottom: 12px;
+                    .fuwu {
+                        border: 1px solid;
+                        display: inline-block;
+                        width: 80px;
+                        text-align: center;
+                        margin-right: 6px;
+                    }
+                }
+                .a {
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+    .tupian {
+        width: 1120px; 
+        height: 260px;
+        background-color: #f5f1f1;
+        margin: 0 auto;
+        padding:20px;
+        display: flex;
+        align-items: center;
+        .img {
+            width: 140px;
+            height: 200px;
+        }
+        .current{
+            transform: scale(1.2);
+        }
+    }
+    .mingxi {
+        width: 1120px;
+        margin: 0 auto;
+        h3 {
+            span {
+                color: yellow;
+            }
+        }
+        .mingxi1 {
+            padding-bottom: 20px;
+            border-bottom: 1px solid black;
+            span {
+                margin-right: 25px;
+            }
+        }
+        .shijian {
+            padding-top: 20px;
+            span {
+                margin-right: 10px;
+            }
+        }
+    }
+    .bofangleixing,
+    .paipainmingxi {
+        width: 1120px;
+        display: flex;
+        margin: 0 auto;
+        border-bottom: 1px solid gray;
+        justify-content: space-around;
+        span {
+            padding: 25px 0px;
+            display: inline-block;
+            width: 100px;
+            text-align: center;
+        }
+        .goupiao {
+            background-color: red;
+            color: white;
+            padding: 0px;
+            height: 35px;
+            width: 100px;
+            line-height: 35px;
+            text-align: center;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+    }
+}
+
+//选座
+#movie_xuanzuo {
+    .xian1 {
+        width: 100%;
+        border-top: 1px solid #d8d8d8;
+        .jindu {
+            margin: 0 auto;
+            padding-top: 60px;
+            width: 990px;
+            height: 132px;
+            .jindu1 {
+                margin-left: 36px;
+                .xian {
+                    color: red;
+                }
+                .shuzi {
+                    color: white;
+                    display: inline-block;
+                    background-color: red;
+                    text-align: center;
+                    border-radius: 7px;
+                    width: 15px;
+                }
+            }
+        }
+    } //座位所有大框
+    .zhuti {
+        margin: 0 auto;
+        width: 1120px;
+        border: 1px solid grey;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 82px;
+        .zuowei {
+            width: 724px;
+            border: 1px solid #d8d8d8;
+            .zuowei_tupian {
+                display: flex;
+                justify-content: space-around;
+                img {
+                    width: 44px;
+                    vertical-align: middle;
+                }
+            }
+            .beijing {
+                width: 540px;
+                height: 40px;
+                background-color: rgb(223, 221, 221);
+                margin: 30px auto;
+            }
+            .zhongyangzi {
+                width: 65px;
+                margin: 0 auto;
+            }
+            .mingxi {
+                display: flex;
+                margin-top: 30px;
+                .mingxi_left {
+                    display: flex;
+                    flex-direction: column;
+                    width: 66px;
+                    align-items: center;
+                    span {
+                        margin-bottom: 18px;
+                        margin-top: 13px;
+                    }
+                }
+                .mingxi_right {
+                    width: 600px;
+                    img {
+                        // width:48px;
+                        margin: 2px 5px 0px 5px;
+                    }
+                }
+            }
+        }
+        .dianying {
+            padding: 20px;
+            background-color: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+            .tupian {
+                display: flex;
+                margin-bottom: 36px;
+                .jieshao {
+                    margin-left: 16px;
+                    h4 {
+                        margin: 0px;
+                    }
+                    div {
+                        margin-bottom: 3px;
+                        span {
+                            font-size: 14px;
+                        }
+                        .leiixng {
+                            color: #a2a2a2;
+                        }
+                    }
+                }
+            }
+            div {
+                margin-bottom: 16px;
+                #jiage {
+                    font-size: 20px;
+                    color: red;
+                }
+                span:nth-of-type(1) {
+                    color: #a2a2a2;
+                }
+            }
+            .piaojia {
+                padding-bottom: 10px;
+                border-bottom: 1px dashed #d8d8d8;
+            }
+            .zuiduo {
+                color: #a2a2a2;
+            }
+            .dianji {
+                margin-left: 20px;
+                span {
+                    color: red !important;
+                }
+            }
+            .queren {
+                display: inline-block;
+                width: 262px;
+                height: 50px;
+                text-align: center;
+                line-height: 50px;
+                background-color: #dedede;
+                color: white;
+                border-radius: 35px;
+            }
+        }
+    }
+}
+
+//订单
+#movie_dingdan {
+    .dingdan_zhuti {
+        width: 1120px;
+        border: 1px solid grey;
+        display: flex;
+        margin: 0 auto;
+        .dingdan_left {
+            width: 200px;
+            margin-right: 38px;
+            background-color: rgb(196, 196, 196);
+            h3,
+            p {
+                width: 100%;
+                text-align: center;
+                margin-bottom: 30px;
+            }
+            p {
+                height: 40px;
+                line-height: 40px;
+            }
+            p:active {
+                background-color: red;
+                color: white;
+            }
+        }
+        .dingdan_right {
+            width: 100%;
+            margin-bottom: 40px;
+            .wode {
+                width: 100%;
+                color: red;
+                padding: 30px 0px;
+                font-size: 18px;
+            }
+            .dingdanmingxi {
+                border: 1px solid #e5e5e5;
+                width: 914px;
+                .mingxi_tou {
+                    background-color: #f7f7f7;
+                    padding: 16px;
+                    display: flex;
+                    justify-content: space-between;
+                    span {
+                        margin-right: 30px;
+                    }
+                    .rev {
+                        border: 1px solid red;
+                        border-radius: 4px;
+                        color: red;
+                    }
+                }
+                .mingxi_centent {
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 24px;
+                    .left {
+                        display: flex;
+                        .mingzi {
+                            display: flex;
+                            flex-direction: column;
+                            margin-left: 20px;
+                            h5 {
+                                margin: 0px;
+                            }
+                            span {
+                                color: gray;
+                            }
+                            .date {
+                                color: red;
+                            }
+                        }
+                    }
+                    .right {
+                        width: 350px;
+                        display: flex;
+                        align-items: center;
+                    }
+                }
+            }
+        }
+    }
+}

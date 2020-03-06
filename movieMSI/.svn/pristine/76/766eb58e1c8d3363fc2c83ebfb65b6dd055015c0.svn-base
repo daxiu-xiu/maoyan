@@ -1,0 +1,38 @@
+
+
+const { addProjection, obtainProjection, removeProjection ,getall} = require("../dao/scrm_ProjectionDao.js");
+const { addseat } = require("../dao/scrm_seatDao.js");
+
+
+//删除
+module.exports.removeProjection = async function (removeshuju) {
+    const data = await removeProjection(removeshuju)
+    if (data.ok == 1) {
+        return true;
+    }
+    return false;
+}
+
+//获取
+module.exports.obtainProjection = async function (shuju) {
+    const data = await obtainProjection(shuju);
+    return data;
+}
+
+//新增
+module.exports.addProjection = async function (ting) {
+    const data = await addProjection(ting);
+    // console.log(data);
+    if (data._id) {
+        //返回给座位的第三层
+        addseat(data._id);
+        return true;
+    }
+    return false;
+}
+
+//获取所有，用于排片
+module.exports.getall = async function () {
+    const data = await getall();
+    return data;
+}

@@ -1,0 +1,17 @@
+var mongoose = require('mongoose');
+var dbURI = 'mongodb://localhost/flims';
+mongoose.connect(dbURI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
+mongoose.connection.on('connected', function () {
+    console.log('连接到数据库' + dbURI);
+});
+
+
+
+require("../modles/scrm_ProjectionModel");
+
+require("../modles/scrm_seatModel")
+
+require("../modles/cinemaModles")

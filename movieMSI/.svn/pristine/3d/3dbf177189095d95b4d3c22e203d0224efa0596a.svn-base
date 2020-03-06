@@ -1,0 +1,124 @@
+export default class Updatechip {
+    constructor(_id) {
+        this._id = _id;
+        this.render();
+        this.getCinemas();
+        this.getfilm();
+        this.getOneChip();
+        this.handel();
+        $.parser.parse();
+    }
+    render() {
+        console.log(this._id)
+        const html = `   <div style="width:600px; text-align: center">
+<div style="margin-bottom: 20px">
+    <select id="update_film" class="easyui-combobox" data-options="label:'电影:',panelHeight:'auto'" style="width:300px;">
+    </select>
+</div>
+<div style="margin-bottom: 20px">
+    <select id="update_cinema" class="easyui-combobox" data-options="label:'影院:',panelHeight:'auto'" style="width:300px;">
+    </select>
+</div>
+<div style="margin-bottom: 20px">
+    <select id="update_project" class="easyui-combobox" data-options="label:'放映厅:',panelHeight:'auto'" style="width:300px;">
+    </select>
+</div>
+<div style="margin-bottom: 20px">
+    <input id="update_time" class="easyui-datetimebox" name="birthday" data-options="required:true,showSeconds:false,label:'放映时间:' " value="3/4/2010 2:3"
+        style="width:300px">
+
+</div>
+<div style="margin-bottom: 20px">
+    <input id="update_fares" class="easyui-textbox" style="width:300px" data-options="prompt:'￥',label:'票价：'">
+</div>
+<div style="margin-bottom: 20px;width:100%;text-align: center">
+    <a id="update_but"  class="easyui-linkbutton" data-options="iconCls:'icon-add'">确认修改</a>
+</div>
+</div>`
+        $("#rightPart").html(html);
+    }
+    //一进来的时候就获取所有电影院和对应的 放映厅
+    getCinemas() {
+        //关联//这个组件combobox自带发送请求获取信息的功能
+        $('#update_cinema').combobox({
+            url: '/api/cinemas/getALL_cinemas',
+            method: `GET`,
+            valueField: '_id',
+            textField: 'cinemaName',
+            onSelect: function (rec) {
+                $('#update_project').combobox({
+                    url: `/api/Projections/${rec._id}`,
+                    valueField: "_id",
+                    textField: "scrm_name"
+                });
+            }
+        });
+    }
+    //获取所有电影
+    getfilm() {
+        //这个组件combobox自带发送请求获取信息的功能
+        $('#update_film').combobox({
+            url: '/api/film/getall',
+            method: `GET`,
+            valueField: '_id',
+            textField: 'cName'
+        })
+    };
+    //获取当时点击进来的那条数据的信息(通过id)
+    getOneChip() {
+        $.ajax({
+            url: `/api/chip/${this._id}`,
+            type: 'get',
+            success([msg]) {
+                console.log(msg)
+                //拿回来的数据进行渲染
+                //电影名字
+                $("#update_film").combobox("setValue", msg.filmId);
+                //电影院名字
+                $("#update_cinema").combobox("setValue", msg.cinemaId);
+                //放映厅名字
+                $("#update_project").combobox("setValue", msg.ProjectionsId);
+                //场次时间
+                $('#update_time').datetimebox('setValue', msg.time);
+                //票价
+                $("#update_fares").textbox("setValue", msg.fares);
+            }
+        })
+    }
+    //点击点击确认修改事件
+    handel() {
+        let _id = this._id;
+        $("#update_but").linkbutton({
+            onClick: function () {
+                //场次时间
+                const time = $('#update_time').datetimebox('getValue');
+                //票价
+                const fares = $("#update_fares").textbox('getValue');
+                //电影名字
+                const filmId = $("#update_film").combobox('getValue');
+                //影院
+                const cinemaId = $("#update_cinema").combobox('getValue');
+                //放映厅
+                const ProjectionsId = $("#update_project").combobox('getValue');
+                $.ajax({
+                    url: `/api/chip`,
+                    type: `PATCH`,
+                    data: {
+                        _id,
+                        time,
+                        filmId,
+                        cinemaId,
+                        ProjectionsId,
+                        fares
+                    },
+                    success(msg) {
+                        if (msg) {
+                            $.messager.alert("修改", "修改成功");
+                            location.hash = "#/system/chiplist";
+                        }
+                    }
+                })
+            }
+        })
+    }
+}

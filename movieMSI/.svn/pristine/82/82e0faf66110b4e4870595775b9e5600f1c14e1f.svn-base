@@ -1,0 +1,341 @@
+export default class Scrm_addhall {
+    constructor() {
+        this.pageData = {
+            // 当前页
+            currentPage: 1,
+            // 每页显示条数
+            pageSize: 5,
+            // 总条数
+            totalCount: 0,
+            // 总页数
+            totalPages: 0,
+            // 放映厅数据
+            Projections: []
+        }
+        this.render();
+        this.biaoge();
+        this.getshuju();
+        this.getyingyuan();
+        this.handel();
+        this.addstyle();
+        $.parser.parse();
+    }
+    render() {
+        const tingHTML =
+            `
+        <div id="scrm_zhenti">
+
+       <div id ="scrm_zhenti1">
+        <div class="easyui-panel" title="新增放映厅" style="width:400px;padding:30px" data-options="cls:'loginPanel'">
+            
+            <div style="margin-bottom: 20px;text-align: right;">
+                <p>
+                <label id="xuanyinwenzi" for="yingxia">选择影院 :</label>
+                <select name="" id="yingxia"></select>
+                </p>
+            </div>
+
+            <div style="margin-bottom: 20px;text-align: right;">
+                    <input id="scrm_name" class="easyui-textbox" data-options="required: 'true',missingMessage:'小宝贝儿 , 放引厅名字不能为空噢 ~~~' ,prompt:'必填',label:'放映厅名 :'"
+                        style="width:100%">
+            </div>
+
+            <div style="text-align: right;">
+                <a id="scrm_btn" href="#" class="easyui-linkbutton" data-options="width:256,iconCls:'icon-add'">确认新增</a>
+            </div>
+
+        </div>
+
+
+        <div id="scrm_studentsDgWrap" style="width: 732px">
+            <table id="scrm_studentsDg"></table>
+            <div id="scrm_pp1">
+            <div id="scrm_pp" style="background:#efefef;border:1px solid #ccc;"></div>
+            </div>
+        </div>
+        
+
+        <div id="dd">
+        <div id="dd2">
+        <p>1</p>
+        <p>2</p>
+        <p>3</p>
+        <p>4</p>
+        <p>5</p>
+        <p>6</p>
+        <p>7</p>
+        <p>8</p>
+        <p>9</p>
+        <p>10</p>
+        </div>
+        <div id="dd1"></div>
+        </div>  
+        <div>
+    </div>
+        `
+        $("#rightPart").html(tingHTML);
+    }
+    biaoge() {
+        //表格
+        $('#scrm_studentsDg').datagrid({
+            singleSelect: "false",
+            columns: [[
+
+                { field: '_id', title: '编号', width: "180px", align: 'center' },
+                {
+                    field: 'cinemaId', title: '影院名', width: "200px", align: 'center',
+                    formatter: function (value, row, index) {
+                        // console.log(value,row);
+                        return value.cinemaName
+                    }
+
+                },
+                { field: 'scrm_name', title: '已有放映厅', width: "150px", align: 'center' },
+                {
+                    field: 'handle', title: '操作', width: '200px', align: 'center',
+                    formatter: function (value, row, index) {
+                        return `
+                    <a  class="easyui-linkbutton updateBtn" data-id="${row._id}">查看座位</a>
+                    <a class="easyui-linkbutton removeBtn" data-id="${row._id}">删除放映厅</a>
+                `
+                    }
+                }
+            ]],
+            onLoadSuccess: function () {
+                $.parser.parse('#scrm_studentsDgWrap'); //重新解析
+            }
+        });
+
+    }
+    //渲染所有表格数据
+    getshuju() {
+        $.ajax({
+            url: "/api/Projections",
+            post: "get",
+            data: {
+                currentPage: this.pageData.currentPage,
+                pageSize: this.pageData.pageSize
+            },
+            success: (msg) => {
+                this.pageData = msg;
+                $('#scrm_studentsDg').datagrid({ data: this.pageData.Projections })
+                //分页
+                $('#scrm_pp').pagination({
+                    //总页数
+                    total: this.pageData.totalCount - 0,
+                    //当前每页显示条数
+                    pageSize: this.pageData.pageSize - 0,
+                    //设置可以选择显示条数的数量
+                    pageList: [1, 2, 3, 5],
+                    //当前页
+                    pageNumber: this.pageData.currentPage - 0,
+                    displayMsg: " 当前第一条数据 {from} 到最后一条页数 {to} 总数据为: {total} "
+                });
+            }
+        })
+    }
+    //获取影院信息
+    getyingyuan() {
+        $.ajax({
+            url: '/api/cinemas/getcinemas',
+            type: "get",
+            success(msg) {
+                console.log(msg);
+                console.log(msg.cinemas);
+                const yingyuan = msg.cinemas;
+                const yingxiaHTML = yingyuan.map(item => (
+                    `
+                    <option value="${item._id}">${item.cinemaName}</option>
+                    `
+                )).join("");
+                $("#yingxia").html(yingxiaHTML);
+            }
+        })
+    }
+    //事件
+    handel() {
+
+
+        //分页点击
+        $('#scrm_pp').pagination({
+            onSelectPage: (pageNumber, pageSize) => {
+                this.pageData.currentPage = pageNumber,
+                    this.pageData.pageSize = pageSize,
+                    this.getshuju();
+            }
+        });
+
+
+        //新增
+        $("#scrm_btn").click(() => {
+            const scrm_name = $("#scrm_name").textbox("getValue");
+            const cinemaId = $("#yingxia").val()
+            console.log(cinemaId);
+            $.ajax({
+                url: "/api/Projections",
+                type: "post",
+                data: { cinemaId, scrm_name },
+                success: (msg) => {
+                    if (msg) {
+                        $.messager.alert('新增放映厅', '新增成功');
+                        $("#scrm_name").textbox("setValue", "");
+                        this.getshuju();
+                    }
+                }
+            })
+        })
+
+
+        //将最外面的this.getshuju()给handel里的一个变量保存
+        let getxuandata = () => {
+            this.getshuju();
+        }
+
+        //点击删除
+        $("#scrm_studentsDgWrap").on("click", ".removeBtn", function () {
+            $.messager.confirm('删除放引厅', '您确认想要删除此放映厅吗？', (r) => {
+                if (r) {
+                    const _id = $(this).data("id");
+                    console.log(_id);
+                    $.ajax({
+                        url: `/api/Projections/${_id}`,
+                        type: "delete",
+                        success: (msg) => {
+                            if (msg) {
+                                // $.messager.alert('删除放映厅', '删除成功');
+                                getxuandata();
+                            }
+                        }
+                    })
+                }
+            });
+        })
+
+
+        //查看弹窗
+        $("#scrm_studentsDgWrap").on("click", ".updateBtn", function () {
+            $('#dd').dialog({
+                title: '此放映厅的座位',
+                width: 400,
+                // height: 200,
+                closed: false,
+                cache: false,
+                // href: 'get_content.php',    
+                modal: true
+            });
+            // $('#dd').dialog('refresh', 'new_content.php'); 
+
+            const _id = $(this).data("id");
+            console.log(_id);
+
+            $.ajax({
+                url: `/api/seats/${_id}`,
+                type: `get`,
+                success(msg) {
+                    console.log(msg);
+                    let zz = `<ul class="scrm_paibiao">`;
+                    for (let i = 0; i <= msg.length - 1; i++) {
+                        // zz += `<li class="scrm_paibiao1">${i}</li>`
+                        zz += `<li class="scrm_paibiao1">
+                        <img src="../../../imagesAll/Screenshot_2016-10-21-17-14-02_03.png" alt="">
+                        </li>`
+                        if ((i + 1) % 10 == 0) {
+                            zz += `</ul><ul class="scrm_paibiao">`
+                        }
+                    }
+                    zz += `</ul>`
+                    console.log(zz);
+                    $("#dd1").html(zz)
+                }
+            })
+
+
+            //生成十个ul，然后再每一个ul里生成10个li  第一种方法
+            //     let xx = "";
+            //     let jj = "";
+            //     for (let j = 1; j <= 10; j++) {
+            //         jj +=
+            //             `
+            //         <li class="paibiao1">o</li>
+            //         `
+            //     }
+            //     for (let i = 1; i <= 10; i++) {
+            //         xx +=
+            //             `
+            //    <ul class="paibiao">
+            //         ${jj}
+            //    </ul>
+            //     `
+            //     }
+            // $("#dd").html(xx)
+
+            //第二种方法
+            // let xx = "";
+            // for (let i = 1; i <= 10; i++) {
+            //     xx +=
+            //         `
+            //     <ul class="paibiao">
+            //     `
+            //      for (let j = 1; j <= 10; j++) {
+            //          xx+=
+            //         `
+            //          <li class="paibiao1">o</li>
+            //         `
+            //     }
+            //    xx+= `</ul>`
+            // }
+            // let yy = xx
+            // $("#dd").html(yy)
+            // this.addstyle();
+        })
+    }
+
+
+
+    //样式
+    addstyle() {
+
+        $("#scrm_zhenti").css({
+            // "width": "800px",
+            "margin": "auto",
+            "display": "flex",
+            "flex-direction": "column",
+            "align-items": "center",
+            "background-image": "url('../../../imagesAll/0121705b21dce1a80121bbecac6fa8.jpg')",
+
+        })
+
+
+        $("#scrm_zhenti1").css({
+            "opacity": "0.2",
+            "display": "flex",
+            "flex-direction": "column",
+            "align-items": "center",
+        })
+        $("#scrm_zhenti1").hover(
+            //移入
+            function () {
+                $("#scrm_zhenti1").css({
+                    "opacity": "1",
+                })
+
+            },
+            //移出
+            function () {
+                $("#scrm_zhenti1").css({
+                    "opacity": "0.1",
+                })
+            }
+        )
+        $(".easyui-panel").css({
+            "background-color": "yellow"
+        })
+        $(".datagrid-view2").css({
+            "background-color": "aquamarine"
+        })
+        $("#scrm_pp").css({
+            "background-color": "skyblue"
+        })
+    }
+
+}

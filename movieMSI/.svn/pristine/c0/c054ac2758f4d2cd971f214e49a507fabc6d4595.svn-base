@@ -1,0 +1,33 @@
+const mongoose = require("mongoose");
+//定义数据集合结构
+const chipSchema = new mongoose.Schema({
+    time: String, //上映场次时间
+    fares: String, //售票价格
+    filmId: {
+        type: String,
+        // default:'终结者',
+    },
+    cinemaId: {
+        type: String,
+    },
+    ProjectionsId: {
+        type: String,
+    },
+    // filmId: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     // ref: 'teacherModel'
+    // }, //电影名字
+
+    // cinemaId: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     // ref: 'teacherModel'
+    // }, //影院名字
+
+    // ProjectionsId: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     // ref: 'teacherModel'
+    // } //放映厅名字
+})
+
+//定义数据模型
+mongoose.model("chipModel", chipSchema, "chip");

@@ -1,0 +1,56 @@
+const mongoose = require("mongoose");
+
+//获取
+module.exports.obtainProjection = async ({
+    currentPage,
+    pageSize
+}) => {
+
+    // 获取总条数
+    const totalCount = await mongoose.model("ProjectionModel").countDocuments();
+    // 总页数
+    const totalPages = Math.ceil(totalCount / pageSize);
+    // 获取放映厅数据
+    const Projections = await mongoose.model("ProjectionModel")
+        .find()
+        .populate("cinemaId")
+        .limit(pageSize - 0)
+        .skip((currentPage - 1) * pageSize);
+    return {
+        currentPage,
+        pageSize,
+        totalCount,
+        totalPages,
+        Projections
+    }
+}
+
+
+//新增
+module.exports.addProjection = async function (ting) {
+    const data = await mongoose.model("ProjectionModel").create(ting);
+    return data;
+}
+
+
+//删除
+module.exports.removeProjection = async function (removeshuju) {
+    const data = await mongoose.model("ProjectionModel").deleteOne(removeshuju);
+    return data;
+}
+
+//获取所有，用于排片
+module.exports.getall = async function (id) {
+    //修改了关联（秀）
+    let {
+        _id
+    } = id
+    console.log(_id);
+    //关联查询
+    const data = await mongoose.model("ProjectionModel").find({cinemaId:_id}). populate({
+        path: 'cinemaId',
+        select: '_id cinemaName',
+    });
+    // console.log(data)
+    return data;
+}

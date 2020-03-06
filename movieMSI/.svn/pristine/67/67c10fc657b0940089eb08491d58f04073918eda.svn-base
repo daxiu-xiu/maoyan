@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="./stylesheets/themes/bootstrap/easyui.css">
+    <link rel="stylesheet" href="./stylesheets/themes/icon.css">
+    <link rel="stylesheet" href="./stylesheets/movie.css">
+    <link rel="stylesheet" href="./stylesheets/scrm_xinzengting.css">
+</head>
+
+<body>
+    <div id="root">
+    </div>
+    <script src="./javascripts/jquery-3.4.1.min.js"></script>
+    <script src="./javascripts/jquery.easyui.min.js"></script>
+    <script src="./javascripts/director.min.js"></script>
+    <script src="./index.js" type="module"></script>
+</body>
+
+</html>

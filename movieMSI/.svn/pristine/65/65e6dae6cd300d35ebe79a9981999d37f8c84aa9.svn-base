@@ -1,0 +1,230 @@
+* {
+  margin: 0;
+  padding: 0;
+
+}
+
+a {
+  font-size: 20px;
+  color: red;
+  text-decoration: none;
+}
+
+
+
+#leftPart div,#leftPart input,#leftPart span{
+  border:0 !important
+}
+
+.titlle_bac {
+  width: 100%;
+  height: 100px;
+  background-color: #ef4238;
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  position: relative;
+}
+
+.title_out {
+  color: white;
+  position: absolute;
+  display: flex;
+  align-content: center;
+  right: 60px;
+  display: flex;
+  align-items: center;
+
+}
+
+.titlle_bac img {
+  margin-right: 10px;
+  height: 80px;
+  border-radius: 40px;
+  margin-left: 50px;
+}
+
+.title_out img {
+  height: 40px;
+  border-radius: 20px;
+}
+
+.title_one {
+  display: inline-block;
+  width: 3px;
+  height: 80px;
+  background: white;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.title_two {
+  font-size: 40px;
+  color: white;
+}
+
+li {
+  margin-top: 20px;
+  font-size: 20px;
+  color: red;
+}
+
+.panel-header {
+  background-color: black !important;
+}
+
+#leftPart .panel-body {
+  background-color: black !important;
+}
+
+.layout-body {
+  background-color: black;
+}
+
+.accordion {
+  background-color: black
+}
+
+#rightPart {
+  background-color: gray !important;
+}
+
+#menu {
+  border: 1px solid black
+}
+
+.accordion,
+.panel-last>.accordion-header {
+  border: 1px solid black
+}
+
+#leftPart div {
+  border: 1px solid gray
+}
+
+#leftPart .panel-title {
+  font-size: 25px !important;
+}
+
+#id {
+  font-size: 20px !important;
+}
+
+.panel-header {
+  background-repeat: no-repeat !important;
+  display: flex;
+  align-items: center;
+  /* background-repeat-x: no-repeat !important; */
+}
+
+.panel-body-noheader {
+  border: none !important;
+}
+
+/* 输入框文字 */
+.textbox-text,
+.textbox,
+.textbox-prompt {
+  font-size: 16px !important;
+}
+
+
+
+/* 图标 */
+.panel-icon {
+  height: 40px;
+  width: 40px;
+  border-radius: 20px;
+  left: 15px;
+  top: 33%;
+}
+
+/* 文字 */
+.panel-with-icon {
+  padding-left: 54px;
+}
+
+
+.accordion-header {
+  height: 68px;
+}
+
+/* 登录样式 */
+.loginAll,
+.registerAll {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 800px;
+  position: relative;
+  background: url("../imagesAll/girl.jpg");
+  background-size: 100%;
+}
+
+.loginAll a {
+  color: green;
+}
+
+.loginAll #loginLogo,
+.registerAll #registerLogo {
+  height: 80px;
+  border-radius: 40px;
+}
+
+.loginAll .loginlittle,
+.registerAll .registerlittle {
+  background: rgba(33, 33, 33, 0.5);
+  width: 400px;
+  padding: 20px;
+  height: 400px;
+  box-sizing: border-box;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+
+}
+
+.loginAll .loginlittle span,
+.registerAll .registerlittle span {
+  font-size: 25px;
+  color: #ef4238
+}
+
+/* 电影增加列表 */
+.movieADD div {
+  padding: 0 !important;
+  background-color: aqua;
+}
+
+.movieADD #left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+/* 修改用户的窗口样式 */
+.changeUser{
+  margin: 0 auto;
+  background-color: antiquewhite;
+  width: 400px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.changeUser span{
+  font-size: 20px;
+}
+.changeUser p{
+  font-size: 30px;
+}
+
+
+
+
+
+

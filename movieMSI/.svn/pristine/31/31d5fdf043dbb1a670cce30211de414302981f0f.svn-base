@@ -1,0 +1,19 @@
+var express = require('express');
+var router = express.Router();
+const { film_add,get } = require("../moveService/filmService");
+// 新增电影
+router.post('/', async function (req, res, next) {
+    // console.log(1111111111111);
+    const film = req.body;
+    const data = await film_add(film);
+    res.send(data);
+})
+// 获取电影数据
+router.get('/', async function (req, res, next) {
+    const film = req.query;
+    // console.log(student);
+    const data = await get(film);
+    res.send(data);
+});
+
+module.exports = router;

@@ -1,0 +1,57 @@
+export default class BackUsers {
+    constructor() {
+        this.render();
+        this.table();
+        $.parser.parse();
+    }
+    render() {
+        const page = `
+        <!--  表 格  -->
+        <table id="backUsersTable">
+        </table>
+        <!-- 页数 -->
+        <div id="page" style="background:#efefef;border:1px solid #ccc;"></div>
+        `;
+        $("#rightPart").html(page);
+    }
+    getBackUsers() {
+        $.ajax({
+            type: "GET",
+            url: "api/backUsers",
+            success(msg) {
+                console.log(123);
+            }
+        })
+    }
+    table() {
+        $("#backUsersTable").datagrid({
+            columns: [
+                [{
+                        field: '_id',
+                        title: '编号',
+                        width: 100,
+                        align: 'center'
+                    },
+                    {
+                        field: 'name',
+                        title: '姓名',
+                        width: 100,
+                        align: 'center'
+                    },
+                    {
+                        field: 'age',
+                        title: '年龄',
+                        width: 100,
+                        align: 'center'
+                    },
+                    {
+                        field: 'gender',
+                        title: '性别',
+                        width: 100,
+                        align: 'center'
+                    },
+                ]
+            ]
+        })
+    }
+}

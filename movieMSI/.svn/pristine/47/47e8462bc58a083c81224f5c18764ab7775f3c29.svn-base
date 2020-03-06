@@ -1,0 +1,6 @@
+const {daoAddCinema}=require("../dao/daoCinema")
+module.exports.addCinemaServis=async addCinemaData=>
+{
+    const data=await daoAddCinema(addCinemaData);
+    return data;
+}

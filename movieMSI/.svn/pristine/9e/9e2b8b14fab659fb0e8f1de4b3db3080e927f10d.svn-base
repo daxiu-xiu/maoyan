@@ -1,0 +1,36 @@
+export default class Updatechip {
+    constructor() {
+        this.render();
+        $.parser.parse();
+    }
+    render() {
+const html=`   <div style="width:600px; text-align: center">
+<div style="margin-bottom: 20px">
+    <select id="" class="easyui-combobox" data-options="label:'电影:',panelHeight:'auto'" style="width:300px;">
+    </select>
+</div>
+<div style="margin-bottom: 20px">
+    <select id="" class="easyui-combobox" data-options="label:'影院:',panelHeight:'auto'" style="width:300px;">
+    </select>
+</div>
+<div style="margin-bottom: 20px">
+    <select id="" class="easyui-combobox" data-options="label:'放映厅:',panelHeight:'auto'" style="width:300px;">
+    </select>
+</div>
+<div style="margin-bottom: 20px">
+    <input class="easyui-datetimebox" name="birthday" data-options="required:true,showSeconds:false,label:'放映时间:' " value="3/4/2010 2:3"
+        style="width:300px">
+
+</div>
+<div style="margin-bottom: 20px">
+    <input id="" class="easyui-textbox" style="width:300px" data-options="prompt:'￥',label:'票价：'">
+</div>
+<div style="margin-bottom: 20px;width:100%;text-align: center">
+    <a id="" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'">确认修改</a>
+</div>
+</div>`
+
+        $("#rightPart").html(html);
+
+    }
+}

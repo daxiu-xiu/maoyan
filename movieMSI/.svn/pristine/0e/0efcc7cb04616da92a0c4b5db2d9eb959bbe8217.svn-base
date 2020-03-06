@@ -1,0 +1,10 @@
+const mongoose = require("mongoose");
+module.exports.order=async function(users){
+    const data = await mongoose.model("orderRoomModel").create(users);
+    return data
+}
+
+module.exports.orderFind=async function(){
+    const data = await mongoose.model("orderRoomModel").find();
+    return data
+}

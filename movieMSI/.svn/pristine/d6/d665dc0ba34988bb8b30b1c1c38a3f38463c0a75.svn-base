@@ -1,0 +1,111 @@
+const mongoose = require("mongoose");
+
+
+//获取所有渲染页面
+module.exports.getChipByPage = async function (chips) {
+    let {
+        currentPage,
+        pageSize
+    } = chips;
+    //获取总条数
+    const totalCount = await mongoose.model("chipModel").countDocuments();
+    //获取总页数(为总条数除以每个页数的个数)向上取整
+    //假如有3.5个页面则总共为4个页面
+    const totalPage = Math.ceil(totalCount / pageSize)
+
+    const chip = await mongoose.model("chipModel")
+        .find() //查找所有
+        .limit(pageSize - 0) //查找的条数（渲染的个数）
+        .skip((currentPage - 1) * pageSize) //需要跳过的个数就是前一页乘以每一页的个数
+        .populate({
+            path: "filmId",
+        }).populate({
+            path: "ProjectionsId",
+            populate: {
+                path: 'cinemaId'
+            }
+        })
+        
+    return {
+        totalCount,
+        totalPage,
+        chip,
+        pageSize,
+        currentPage,
+    }
+}
+
+//增加排片
+module.exports.addchip = async function (chip) {
+    const data = await mongoose.model("chipModel").create(chip);
+    return data;
+}
+
+//通过_id删除排片
+module.exports.delchip = async function (_id) {
+    const data = await mongoose.model("chipModel").deleteOne(_id);
+    return data;
+}
+
+
+//获取所有排片
+module.exports.getall = async function () {
+    const data = await mongoose.model("chipModel").find().populate({
+        path: "filmId",
+    }).populate({
+        path: "ProjectionsId",
+        populate: {
+            path: 'cinemaId'
+        }
+    });
+    return data;
+}
+
+
+//通过id去获取一个场次
+module.exports.getOneChip = async function (_id) {
+    const data = await mongoose.model("chipModel").find(_id);
+    return data
+}
+
+
+//通过id去修改一个场次
+module.exports.updateChip = async function (chipById) {
+    const {
+        _id,
+        time,
+        filmId,
+        cinemaId,
+        ProjectionsId,
+        fares
+    } = chipById;
+    // console.log(student);
+    const data = await mongoose.model("chipModel").update({
+        _id
+    }, {
+        time,
+        filmId,
+        cinemaId,
+        ProjectionsId,
+        fares
+    })
+
+    return data;
+}
+
+
+//查询事件。通过电影的Id俩查询已经排了此电影的影院
+module.exports.getOneChipByfilm = async function (id) {
+    let {
+        _id
+    } = id;
+    const data = await mongoose.model("chipModel").find({
+        filmId: _id
+    })
+    .populate({
+        path: 'cinemaId',
+        select:'cinemaName' 
+    })
+    console.log(data)
+    return data;
+}

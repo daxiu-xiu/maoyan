@@ -1,0 +1,33 @@
+const {daoAddCinema,getCinemasDao,getALL_cinemasDao,delete_cinemaDao,update_cinemaDao,update_dianying}=require("../dao/daoCinema")
+module.exports.addCinemaServis=async addCinemaData=>
+{
+    const data=await daoAddCinema(addCinemaData);
+    return data;
+}
+// 分页获取
+module.exports.getCinemas=async termData=>
+{
+    const data=await getCinemasDao(termData);
+    return data;
+}
+// 获取所有
+module.exports.getALL_cinemas=async (_id)=>
+{
+    const data=await getALL_cinemasDao(_id);
+    return data;
+}
+// 删除
+module.exports.delete_cinema=async (delete_data)=>
+{
+    const data=await delete_cinemaDao(delete_data);
+    return data;
+}
+// 修改
+module.exports.update_cinema=async (updata_data)=>
+{
+    const data=await update_cinemaDao(updata_data);
+    return data;
+}
+
+
+

@@ -1,0 +1,15 @@
+var express = require('express'); 
+var router = express.Router();
+const {addCinemaServis,getCinemaServis}=require("../moveService/cinemaServes")
+/* GET home page. */
+// 增加
+router.post('/addcinema',async function(req, res, next){
+res.send(await addCinemaServis(req.body));
+});
+
+// 获取全部电影院
+router.get('/getcinemas',async function(req, res, next){
+    res.send(await getCinemaServis(req.query));
+    });
+
+module.exports = router;

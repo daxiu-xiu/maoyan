@@ -1,0 +1,38 @@
+const {
+    register_Dao,
+    login_Dao,
+    isEixt_Dao,
+    update_usersDao,
+    delete_usersDao,
+    getUsersDao
+} = require("../dao/frontUsers_Dao.js")
+module.exports.register = async function (userData) {
+    const data = await register_Dao(userData);
+    return data;
+}
+// 登录
+module.exports.login = async function (userData) {
+    const data = await login_Dao(userData);
+    return data;
+}
+// 验证是否存在
+module.exports.isEixt = async function (userData) {
+    const data = await isEixt_Dao(userData);
+    return data;
+}
+
+// 分页获取
+module.exports.getUsers = async termData => {
+    const data = await getUsersDao(termData);
+    return data;
+}
+// 删除
+module.exports.delete_users = async (delete_data) => {
+    const data = await delete_usersDao(delete_data);
+    return data;
+}
+// 修改
+module.exports.update_users = async (updata_data) => {
+    const data = await update_usersDao(updata_data);
+    return data;
+}

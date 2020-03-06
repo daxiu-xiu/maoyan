@@ -1,0 +1,38 @@
+const mongoose = require("mongoose");
+//通过排片id座位寻找该场次的所有位置
+module.exports.getzuowei = async function (chipId) {
+    const data = await mongoose.model("paipianzuoweiModel").find(chipId);
+
+    return data;
+}
+
+//通过排片的id和座位的id修改状态值
+module.exports.updateSate = async function (id) {
+    console.log(id)
+    let {
+        seatsId,
+        chipId
+    } = id;
+    var data = [];
+    if (seatsId.length < 5) {
+        for (let i = 0; i < seatsId.length; i++) {
+            data1 = await mongoose.model("paipianzuoweiModel").update({
+                seatsId: seatsId[i],
+                chipId
+            }, {
+                state: true
+            });
+            data.push(data1)
+        }
+    } else {
+        data1 = await mongoose.model("paipianzuoweiModel").update({
+            seatsId,
+            chipId
+        }, {
+            state: true
+        });
+        data.push(data1)
+    }
+
+    return data
+}

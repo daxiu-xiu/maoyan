@@ -1,0 +1,391 @@
+const mongoose = require("mongoose");
+
+
+//获取分页渲染页面和查询渲染
+module.exports.getChipByPage = async ({
+    searchTerm,
+    currentPage,
+    pageSize,
+}) => {
+    let totalCount;
+    let totalPage;
+    let chip;
+    if (searchTerm != undefined) {
+        const searcherm = searchTerm.split("&");
+        // console.log(searcherm)
+        chip = await mongoose.model("chipModel").find({
+            filmId: searcherm[0],
+            cinemaId: searcherm[1],
+            time: searcherm[2]
+        }).limit(pageSize - 0) // 查询条数
+            .skip((currentPage - 1) * pageSize)
+            .populate({
+                path: "filmId",
+            }).populate({
+                path: "ProjectionsId",
+                populate: {
+                    path: 'cinemaId'
+                }
+            }); // 跳过条数   ;
+        totalCount = chip.length;
+        totalPage = Math.ceil(totalCount / pageSize);
+    } else {
+        //获取总条数
+        totalCount = await mongoose.model("chipModel").countDocuments();
+        //获取总页数(为总条数除以每个页数的个数)向上取整
+        //假如有3.5个页面则总共为4个页面
+        totalPage = Math.ceil(totalCount / pageSize)
+
+        chip = await mongoose.model("chipModel")
+            .find() //查找所有
+            .limit(pageSize - 0) //查找的条数（渲染的个数）
+            .skip((currentPage - 1) * pageSize) //需要跳过的个数就是前一页乘以每一页的个数
+            .populate({
+                path: "filmId",
+            }).populate({
+                path: "ProjectionsId",
+                populate: {
+                    path: 'cinemaId'
+                }
+            })
+    }
+    return {
+        totalCount,
+        totalPage,
+        chip,
+        pageSize,
+        currentPage,
+    }
+}
+
+//增加排片
+module.exports.addchip = async function (chip) {
+    const data = await mongoose.model("chipModel").create(chip);
+    // /新增排片选座   
+    // console.log('-----------------'+data.ProjectionsId);
+    const xx = await mongoose.model("seatModel").find({
+        ProjectionId: data.ProjectionsId
+    })
+    // console.log(xx);
+
+    for (let i = 0; i <= xx.length - 1; i++) {
+        // console.log(data._id)
+        let xuanzuo = {
+            chipId: data._id,
+            seatsId: xx[i]._id,
+            state: false,
+        }
+        const data1 = await mongoose.model("paipianzuoweiModel").create(xuanzuo);
+        //   console.log(data1)
+    }
+    return data;
+}
+
+//通过_id删除排片
+module.exports.delchip = async function (_id) {
+    const data = await mongoose.model("chipModel").deleteOne(_id);
+    const data2 = await mongoose.model("paipianzuoweiModel").remove({
+        chipId: _id
+    });
+    return data;
+}
+
+
+//获取所有排片
+module.exports.getall = async function () {
+    const data = await mongoose.model("chipModel").find().populate({
+            path: "filmId",
+        }).populate({
+            path: "ProjectionsId",
+        })
+        .populate({
+            path: 'cinemaId',
+        }).populate("cinemaId")
+    return data;
+}
+
+//通过id去获取一个场次(管理系统用)
+
+//通过id获取所有数据
+module.exports.getChipIdquanbu = async function (_id) {
+    const data = await mongoose.model("chipModel").find(_id)
+    .populate({
+        path: "filmId",
+    })
+    .populate({
+        path: "ProjectionsId",
+    })
+    .populate({
+            path: 'cinemaId',
+        })
+        // .populate("cinemaId")
+    return data;
+}
+
+
+//通过id去获取一个场次
+module.exports.getOneChip = async function (_id) {
+    const data = await mongoose.model("chipModel").find(_id);
+    return data
+}
+
+
+//通过id去修改一个场次
+module.exports.updateChip = async function (chipById) {
+    const {
+        _id,
+        time,
+        filmId,
+        cinemaId,
+        ProjectionsId,
+        fares
+    } = chipById;
+    // console.log(student);
+    const data = await mongoose.model("chipModel").update({
+        _id
+    }, {
+        time,
+        filmId,
+        cinemaId,
+        ProjectionsId,
+        fares
+    })
+
+    return data;
+}
+
+
+//通过电影的id再寻 找排了此电影的影院,且只返回最小的
+
+// module.exports.getSomall = async function (id) {
+//     let {
+//         _id
+//     } = id;
+//     const data2 = [];
+
+
+
+//通过电影的id再寻 找排了此电影的影院,且只返回最小的
+module.exports.getSomall = async function (id) {
+    let { _id } = id;
+    const data2 = [];
+    const data = await mongoose.model("chipModel").find({
+        filmId: _id
+    })
+        .populate({
+            path: 'cinemaId',
+            // select:'cinemaName',
+        })
+        .distinct('cinemaId');
+    for (let i = 0; i < data.length; i++) {
+        const data1 = await mongoose.model("chipModel").find({
+            cinemaId: data[i],
+            filmId: _id
+        }).populate({
+            path: 'cinemaId',
+        })
+        compare = (property) => {
+            return function (a, b) {
+                var value1 = a[property];
+                var value2 = b[property];
+                return value1 - value2;
+            }
+        }
+        data1.sort(this.compare('fares'))
+        data2.push(data1[0])
+    }
+    return data2;
+   
+}
+
+
+
+
+
+
+//通过影院和电影的id来出时间
+module.exports.getChipTime = async function (_id) {
+    // console.log(_id)
+    const data = await mongoose.model("chipModel").find(_id);
+    return data
+}
+//通过电影的id查排了此影院排了的电影
+module.exports.getOneChipByfilm = async function (id) {
+    let {
+        _id
+    } = id;
+
+    const data = await mongoose.model("chipModel").find({
+            filmId: _id
+        })
+        .populate({
+            path: 'cinemaId',
+        })
+    return data
+}
+//通过影院的id拿影院的明细和此影院排了的所有电影
+module.exports.getFilmBycinemaId = async function (id) {
+    let {
+        cinemaId
+    } = id
+    const data = await mongoose.model('chipModel').find(id).distinct('filmId');
+    const data2 = [];
+    for (let i = 0; i < data.length; i++) {
+        const data1 = await mongoose.model('chipModel').find({
+                filmId: data[i],
+                cinemaId: cinemaId
+            })
+            .populate({
+                path: 'cinemaId',
+            })
+            .populate({
+                path: 'filmId'
+            })
+        data2.push(data1[0])
+    }
+    return data2;
+}
+
+//通过电影院的id和电影的id获取所排片的场次
+
+module.exports.getChipByCF = async function (id) {
+    const data = await mongoose.model('chipModel').find(id).populate({
+            path: 'filmId'
+        })
+        .populate({
+            path: 'ProjectionsId'
+        });
+    // console.log(id)
+    return data;
+}
+
+
+//通过排片的id获取所有的信息（供猫眼网站使用网站）
+module.exports.getChipGiveWangZhan = async function (_id) {
+    // console.log(_id)
+    const data = await mongoose.model("chipModel").find(_id)
+        .populate({
+            path: 'ProjectionsId'
+        }).populate({
+            path: 'filmId'
+        }).populate({
+            path: 'cinemaId',
+        })
+    // const data2 = await mongoose.model("selectModel").find({
+    //     chipId: _id._id
+    // })
+
+    // console.log(data2)
+    return data
+}
+
+//一进来就渲染所有所有影院。并且把影院的最低价显示出来(在所有排片中寻找)
+module.exports.getYingyuanSomall = async function () {
+    const data2 = [];
+    //找到所有排片，相同影院的去重
+    const data = await mongoose.model("chipModel").find().distinct('cinemaId');
+    console.log(data)
+    //在遍历寻找    
+    for (let i = 0; i < data.length; i++) {
+        const data1 = await mongoose.model("chipModel").find({ cinemaId: data[i],}).populate({
+            path: 'cinemaId',
+        })
+        //在排序
+        compare = (property) => {
+            return function (a, b) {
+                var value1 = a[property];
+                var value2 = b[property];
+                return value1 - value2;
+            }
+        }
+        //根据价格排序
+        data1.sort(this.compare('fares'))
+        data2.push(data1[0])
+    }
+    console.log(data2)
+    return data2
+
+}
+//通过影院查排了此影院排了的电影
+module.exports.getOneChipByfilm = async function (id) {
+    let {
+        _id
+    } = id;
+
+    const data = await mongoose.model("chipModel").find({
+        filmId: _id
+    })
+        .populate({
+            path: 'cinemaId',
+        })
+    return data
+}
+
+
+
+//通过影院和电影的id来找相关场次和放引厅
+module.exports.getdypai = async function (shuju) {
+    // let { _id } = id;
+    let { cinemaId, filmId } = shuju
+    // console.log(cinemaId,filmId);
+    const data2 = [];
+    // // console.log(shuju);
+    const data = await mongoose.model("chipModel")
+        .find(shuju)
+        // .populate({
+        //     path:"cinemaId",
+        // })
+        // .populate({
+        //     path:"filmId",
+        // })
+        // .populate({
+        //     path:" ProjectionsId"
+        // })
+        .distinct("filmId")
+
+    for (let i = 0; i < data.length; i++) {
+        const data1 = await mongoose.model("chipModel").find({
+            cinemaId,
+            filmId: data[i],
+        }).populate({
+            path: 'cinemaId',
+        })
+            .populate({
+                path: "filmId",
+            })
+            .populate({
+                path: " ProjectionsId"
+            })
+        data2.push(data1[0])
+    }
+
+    // console.log(data2);
+    return data2
+
+
+
+
+
+z
+    // console.log(data);
+    // return data
+}
+
+
+
+//通过影院和电影的id来找相关场次和放引厅
+module.exports.comepp = async function (shuju) {
+    const data = await mongoose.model("chipModel")
+        .find(shuju)
+        .populate({
+            path: "cinemaId",
+        })
+        .populate({
+            path: "filmId",
+        })
+        .populate({
+            path: " ProjectionsId"
+        })
+    // console.log(data);
+    return data
+}

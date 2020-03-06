@@ -1,0 +1,190 @@
+export default class CinemaList {
+    constructor() {
+        this.pageData = {
+            currentPage: 1,
+            pageSize: 6,
+            totalPages: 0,
+            totalCount: 0,
+            Cinemas: []
+        }
+        this.render();
+        this.getcinema();
+        this.addCinema();
+        this.handle();
+        this.testPage();
+        $.parser.parse();
+    }
+    render() {
+        const template = ` <input type="hidden" id="repairid">
+        <div id="main">
+            <!-- 主体 -->
+            <div class="easyui-panel" title="影院管理" style="padding:10px;background:#fafafa;">
+                <p>
+                    <!-- 增加按钮 -->
+                    <a id="addbtn" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'" style="width:50px;background:#fafafa;"></a>
+                    <!-- 选项列表 -->
+                    <select id="cc" class="easyui-combobox" name="dept" style="width:88px;" panelHeight=100>
+                        <option value="cinemaNumber">影院编号</option>
+                        <option value="cinemaName">影院姓名</option>
+                        <option value="cinemaAddress">影院地址</option>
+                        <option value="cinemaTel">影院电话</option>
+                      
+                    </select>
+                    <!-- 搜索框 -->
+                    <input class="easyui-textbox" data-options="iconCls:'icon-search'" style="width:650px">
+                </p>
+                <!-- 影院列表 -->
+                <table id="dg"></table>
+            </div>
+        </div>
+        <!-- 增加影院页面小窗口 -->
+        <div id="addCinema" class="easyui-window" title="影院增加" closed="true" style="width:600px;padding:30px;" data-options=" modal:true,collapsible:false,minimizable:false,maximizable:false,resizable:false">
+            <input id="addAddress" class="easyui-textbox" label="影院地址" style="width:100%">
+            <input id="addTel" class="easyui-textbox" label="影院电话" style="width:100%">
+            <input id="addName" class="easyui-textbox" label="影院名称" style="width:100%">
+        </div>
+        <!-- 修改影院窗口 -->
+        <div id="repairCinema" class="easyui-window" title="修改影院" closed="true" style="width:600px;padding:20px;" data-options=" modal:true,collapsible:false,minimizable:false,maximizable:false,resizable:false">
+            <input id="repairName" class="easyui-textbox" label="影院名称" style="width:100%">
+            <input id="repairAddress" class="easyui-textbox" label="影院地址" style="width:100%">
+            <input id="repairTel" class="easyui-textbox" label="影院电话" style="width:100%">
+            </select>
+        </div>
+        <div id="pp" style="background:#efefef;border:1px solid #ccc;"></div> `
+        $("#rightPart").html(template)
+    }
+    handle() {
+        // 学生列表
+        $('#dg').datagrid({
+            columns: [
+                [{
+                        field: '_id',
+                        title: '编号',
+                        width: 200,
+                        align: 'center',
+                    },
+                    {
+                        field: 'cinemaName',
+                        title: '名称',
+                        width: 150,
+                        align: 'center',
+                    },
+                    {
+                        field: 'cinemaAddress',
+                        title: '地址',
+                        width: 150,
+                        align: 'center',
+                    },
+                    {
+                        field: 'cinemaTel',
+                        title: '电话',
+                        width: 150,
+                        align: 'center',
+                    },
+                    {
+                        field: 'active',
+                        title: '操作',
+                        width: 150,
+                        align: 'center',
+                        formatter: function (value, row, index) {
+                            // 删除修改按钮
+                            return `<a data-deleteId=${row._id}  href="#" class="easyui-linkbutton delete" >删除</a>
+                                         <a data-repairId=${row._id} href="#" class="easyui-linkbutton repair" >修改</a>`
+                        }
+                    },
+                ]
+            ]
+        });
+    }
+    addCinema() {
+        //新增按钮 打开弹窗
+        $(function () {
+            $('#addbtn').on('click', function () {
+                // 点击新增按钮打开新增页面
+                $('#addCinema').window('open');
+            });
+        });
+        // 增加
+        $("#addCinema").dialog({
+            buttons: [{
+                text: '增加',
+                // 点击确定按钮时候 
+                handler: () => {
+                    // 获取新增影院信息
+                    const newNam = $("#addName").textbox("getValue");
+                    const addAddress = $("#addAddress").textbox("getValue");
+                    const addTel = $("#addTel").textbox("getValue");
+                    // 发送AJAX
+                    $.ajax({
+                        url: "/api/cinemas/addcinema",
+                        type: "POST",
+                        data: {
+                            cinemaName: newNam,
+                            cinemaAddress: addAddress,
+                            cinemaTel: addTel
+                        },
+                        success: (msg) => {
+                            if (msg) {
+                                // 成功后关闭窗口，以及渲染数据
+                                $('#addCinema').window('close');
+                                $('#dg').datagrid('reload');
+                                this.getcinema();
+                                alert("增加成功")
+                            }
+                        }
+                    });
+                }
+            }, {
+                text: '取消',
+                handler: function () {
+                    $('#addCinema').window('close');
+                }
+            }]
+        });
+    }
+    // 获取
+    getcinema() {
+        // //  渲染数据
+        $.ajax({
+            url: "/api/cinemas/getcinemas",
+            type: "get",
+            data: {
+                currentPage: this.pageData.currentPage,
+                pageSize: this.pageData.pageSize
+            },
+            success: msg => {
+                this.pageData = msg;
+                this.pageData.cinemas=msg.cinemas;
+                $('#pp').pagination({
+                    pageNumber: this.pageData.currentPage - 0,
+                    total: this.pageData.totalCount - 0,
+                    beforePageText: "第",
+                    afterPageText: `共${this.pageData.totalPages}页`,
+                    pageSize: this.pageData.pageSize - 0,
+                    pageList: [2, 4, 6, 8],
+                    displayMsg: `当前页从第{from}到{to}条,总共{total}条`
+                });
+                // 影院列表
+                $("#dg").datagrid({
+                    data: msg.cinemas,
+                    // 数据加载后重新渲染主体
+                    onLoadSuccess() {
+                        $.parser.parse('#main');
+                    }
+                }, )
+
+            }
+        })
+    }
+    // 选项以及条数
+    testPage() {
+        $('#pp').pagination({
+            onSelectPage: (pageNumber, pageSize) => {
+                this.pageData.currentPage = pageNumber;
+                this.pageData.pageSize = pageSize;
+                // 调用渲染函数
+                this.getcinema();
+            }
+        });
+    }
+}

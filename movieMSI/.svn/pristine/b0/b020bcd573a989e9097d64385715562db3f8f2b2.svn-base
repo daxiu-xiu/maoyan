@@ -1,0 +1,17 @@
+const mongoose = require("mongoose");
+
+//定义数据集合结构
+const chipSchema = new mongoose.Schema({
+    time: String, //上映场次时间
+    fares: String,//售票价格
+    // teacherid: {
+    //     //type:固定格式(通过id来关联)
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     // default: 'null',
+    //     //关联结合的模型名字
+    //     ref: 'teacherModel'
+    // }
+})
+
+//定义数据模型
+mongoose.model("chipModel", chipSchema, "chip");

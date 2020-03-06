@@ -1,0 +1,59 @@
+export default class Addchip {
+    constructor() {
+        this.render();
+        this.handel();
+        $.parser.parse();
+    }
+    render() {
+        const html = `  <div style="width:600px; text-align: center">
+<div style="margin-bottom: 20px">
+    <select id="" class="easyui-combobox" data-options="label:'选择电影:',panelHeight:'auto'" style="width:280px;">
+    </select>
+</div>
+<div style="margin-bottom: 20px">
+    <select id="" class="easyui-combobox" data-options="label:'选择影院:',panelHeight:'auto'" style="width:280px;">
+    </select>
+</div>
+<div style="margin-bottom: 20px">
+    <select id="" class="easyui-combobox" data-options="label:'选择放映厅:',panelHeight:'auto'" style="width:280px;">
+    </select>
+</div>
+<div style="margin-bottom: 20px">
+    <input class="easyui-datetimebox" id="add_time" name="birthday" data-options="required:true,showSeconds:false,label:'放映时间:' " value="3/4/2010 2:3"
+        style="width:280px">
+
+</div>
+<div style="margin-bottom: 20px">
+    <input id="add_fares" class="easyui-textbox" style="width:280px" data-options="prompt:'￥',label:'设置票价：'">
+</div>
+<div style="margin-bottom: 20px">
+    <a id="add_chip" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'">确认新增</a>
+</div>
+</div>`
+        $("#rightPart").html(html);
+
+    }
+    handel() {
+        $("#add_chip").linkbutton({
+            onClick: function () {
+                //场次时间
+                const time = $('#add_time').datetimebox('getValue');
+                //票价
+                const fares = $("#add_fares").textbox('getValue');
+                // console.log( time,
+                //     fares)
+                $.ajax({
+                    url: `/api/chip`,
+                    type: `POST`,
+                    data: {
+                        time,
+                        fares
+                    },
+                    success(msg) {
+                        console.log(msg)
+                    }
+                })
+            }
+        })
+    }
+}

@@ -1,0 +1,34 @@
+import System from "./module/system/system.js";
+import CinemaList from "./module/system/cinemaModel/cinemaList.js";
+import Chiplist from './module/system/chipModel/chiplist.js';
+import Scrm_addhall from "./module/system/scrmModel/xinzengting.js";
+import Film_list from "./module/system/filmModel/film_list.js";
+// import Addchip from './module/system/chipModel/addchip.js'
+
+location.hash = location.hash || '/system'
+const routes = {
+    '/system': {
+        on: () => {
+            new System
+        },
+        '/chiplist': () => {
+            new Chiplist
+        },
+        '/addhall': () => {
+            new Scrm_addhall
+        },
+        '/cinemaList': () => { new CinemaList },
+        // '/addchip': () => {
+        //     new Addchip
+        // }
+        '/film_list': () => {
+            new Film_list
+        }
+    },
+
+}
+
+
+Router(routes).configure({
+    recurse: 'forward'
+}).init();

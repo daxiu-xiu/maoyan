@@ -1,0 +1,125 @@
+export default class Addchip {
+    constructor() {
+        this.render();
+        this.handel();
+        this.getfilm();
+        this.getCinemas();
+        $.parser.parse();
+    }
+    render() {
+        const html = `  <div style="width:600px; text-align: center">
+<div style="margin-bottom: 20px">
+    <select id="addfilm" class="easyui-combobox" data-options="label:'选择电影:',panelHeight:'auto'" style="width:280px;">
+    </select>
+</div>
+<div style="margin-bottom: 20px">
+    <select id="getcinema"  class="easyui-combobox"  data-options="label:'选择影院:',panelHeight:'auto'" style="width:280px;">
+    </select>
+</div>
+<div style="margin-bottom: 20px">
+    <select id="getproject" class="easyui-combobox" data-options="label:'选择放映厅:',panelHeight:'auto'" style="width:280px;">
+    </select>
+</div>
+<div style="margin-bottom: 20px">
+    <input class="easyui-datetimebox" id="add_time" name="birthday" data-options="required:true,showSeconds:false,label:'放映时间:' " value="3/4/2010 2:3"
+        style="width:280px">
+
+</div>
+<div style="margin-bottom: 20px">
+    <input id="add_fares" class="easyui-textbox" style="width:280px" data-options="prompt:'￥',label:'设置票价：'">
+</div>
+<div style="margin-bottom: 20px">
+    <a id="add_chip" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'">确认新增</a>
+</div>
+
+</div>`
+        $("#rightPart").html(html);
+
+    }
+    //一进来的时候就获取所有电影供选择
+
+    //已进入页面就班级的信息供给新增学生选择
+    getfilm() {
+        //这个组件combobox自带发送请求获取信息的功能
+        $('#addfilm').combobox({
+            url: '/api/film/getall',
+            method: `GET`,
+            //通过id的唯一来获取所有班级
+            valueField: '_id',
+            //显示的是班级的名字  
+            textField: 'cName'
+        });
+
+        // $("#cc1").combobox({
+        //     url: '/api/cinemas/getcinemas',
+        //     onSelect: function(rec){    
+        //         var url = 'get_data2.php?id='+rec.id;    
+        //         $('#cc2').combobox('reload', url);    
+        //     }
+        // })
+
+
+
+    }
+    getCinemas() {
+        //这个组件combobox自带发送请求获取信息的功能
+        $('#getcinema').combobox({
+            url: '/api/cinemas/getALL_cinemas',
+            method: `GET`,        
+            valueField: '_id',
+            textField: 'cinemaName',
+            onSelect: function (rec) {
+                var url = '/api/scrm_Projection?_id=' + rec._id;
+                $('#getproject').combobox('reload', url);
+            }
+        });
+    }
+
+    // // //获取所有影院提供给新增
+    // getCinemas() {
+    //     $.ajax({
+    //         url: `/api/cinemas/getcinemas`,
+    //         type: 'get',
+    //         success(msg) {
+    //             console.log(msg)
+    //             console.log(msg.cinemas);
+    //             const a = msg.cinemas.map((item) =>( item.cinemaName))             
+    //             console.log(a)                      
+    //             $('#getcinema').combobox('setValues',a);  
+    //         }
+    //     })}
+
+    // }
+    //事件
+    handel() {
+        $("#add_chip").linkbutton({
+            onClick: function () {
+                //场次时间
+                const time = $('#add_time').datetimebox('getValue');
+                //票价
+                const fares = $("#add_fares").textbox('getValue');
+                //电影名字
+                const filmId = $("#addfilm").combobox('getValue');
+
+                $.ajax({
+                    url: `/api/chip`,
+                    type: `POST`,
+                    data: {
+                        time,
+                        fares,
+                        cinemaId: '太平洋',
+                        filmId,
+                        ProjectionsId: '3D厅'
+
+                    },
+                    success(msg) {
+                        if (msg) {
+                            $.messager.alert("新增", "新增成功");
+                            location.hash = "#/system/chiplist";
+                        }
+                    }
+                })
+            }
+        })
+    }
+}

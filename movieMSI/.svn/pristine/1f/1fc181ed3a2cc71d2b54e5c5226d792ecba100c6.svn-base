@@ -1,0 +1,24 @@
+const {order,orderFind,orderRemove}=require("../dao/orderRoomDao")
+
+module.exports.order = async function (users) {
+    const data_dao = await order(users);
+    if (data_dao._id) {
+        return true
+    } else {
+        return false
+    }
+}
+
+module.exports.orderFind = async function (users) {
+    const data_dao = await orderFind(users);
+    if (data_dao) {
+        return data_dao
+    } 
+}
+
+module.exports.orderRemove = async function (users) {
+    const data_dao = await orderRemove(users);
+    if (data_dao) {
+        return data_dao
+    } 
+}

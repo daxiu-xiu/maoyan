@@ -1,0 +1,22 @@
+var express = require('express');
+var router = express.Router();
+// const rp = require("request-promise"); //引用的代理服务器请求依赖
+// // const {
+// //   getEncAse192
+// // } = require("../utils/salt");
+
+// //注册
+// router.post('/register', async (req, res, next) => {
+//   console.log(req.body);
+//   const {
+//     name,
+//     password,
+//     backphone,
+//   } = req.body;
+//   console.log(name,
+//     password,
+//     backphone,);
+//   res.send(data);
+// })
+
+module.exports = router;

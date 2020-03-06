@@ -1,0 +1,125 @@
+export default class Film_add {
+    constructor() {
+        this.render();
+        this.handel();
+        $.parser.parse();
+     
+    }
+    // 新增电影
+    render() {
+        const film_add = `
+        <div id="form" style="width: 750px;margin: auto;margin-top: 50px; display: flex;justify-content: space-between;">
+        <div id="left">
+            <p>
+                <input class="easyui-textbox" id="cName" data-options="label:'中文名:' " style="width:300px"
+                    prompt="中文名" required="required">
+            </p>
+            <p>
+                <input class="easyui-textbox" id="eName" data-options="label:'英文名:'" style="width:300px"
+                    prompt="英文名" required="required">
+            </p>
+            <p>
+                <select class="easyui-combobox" id="type" name="type" data-options="label:'类型:'"
+                    style="width:300px;">
+                    <option value="爱情">爱情</option>
+                    <option>动画</option>
+                    <option>恐怖</option>
+                    <option>动作</option>
+                    <option>喜剧</option>
+                </select>
+            </p>
+            <p>
+                <input class="easyui-textbox" id="country" data-options="label:'制片国:'" style="width:300px"
+                    prompt="制片国" required="required">
+            </p>
+            <p>
+                <input class="easyui-textbox" id="filmLength" data-options="label:'片长:'" style="width:300px"
+                    prompt="片长" required="required">
+            </p>
+            <p>
+                <input class="easyui-datebox" id="showtime" type="text" data-options="label:'上映时间:'"
+                    style="width:200px"></input>
+            </p>
+            <p>
+                <input class="easyui-textbox" id="director" data-options="label:'导演:'" style="width:300px"
+                    prompt="导演" required="required">
+            </p>
+            <p>
+                <input class="easyui-textbox" id="actor" data-options="label:'演员:'" style="width:300px" prompt="演员"
+                    required="required">
+            </p>
+        </div>
+        <div id="right">
+            <label>简介:</label>
+            <p>
+                <input class="easyui-textbox" id="synopsis" type="text" data-options="multiline:'true'"
+                    style="width:350px;height:100px">
+            </p>
+            <p>
+                <select class="easyui-combobox" id="state" name="dept" data-options="label:'所属状态:'"
+                    style="width:250px;">
+                    <option >正在热映</option>
+                    <option>即将上映</option>
+                </select>
+            </p>
+            <p>
+            <label>选择海报图:</label><input class="easyui-filebox" data-options="buttonText:'上传'"
+                style="width:38px">
+            <label>选择主页图:</label><input class="easyui-filebox" data-options="buttonText:'上传'"
+                style="width:38px">
+            </p>
+            <!-- 海报图片 -->
+            <input id="hbimages" data-options="multiline:'true'"
+                style="width:150px;height:200px;border: 1px solid;">
+            <img src="" alt="" id="images" style="width:150px;height:200px;border: 1px solid;">
+            <p>
+                <a id="addBtn" class="easyui-linkbutton" data-options="iconCls:'icon-add'">新增</a>
+            </p>
+
+        </div>
+    </div>
+        `
+        $("#rightPart").html(film_add);
+    }
+    handel() {
+        $("#addBtn").linkbutton({
+            onClick: function () {
+                const cName = $("#cName").textbox('getValue');
+                const eName = $("#eName").textbox('getValue');
+                const type1 = $("#type").combobox('getValue');
+                const country = $("#country").textbox('getValue');
+                const filmLength = $("#filmLength").textbox('getValue');
+                const showtime = $("#showtime").datebox('getValue');
+                const director = $("#director").textbox('getValue');
+                const actor = $("#actor").textbox('getValue');
+                const synopsis = $("#synopsis").textbox('getValue');
+                const state = $("#state").combobox('getValue');
+                // const images = $("#images").data("filename");
+                $.ajax({
+                    url: '/api/film',
+                    type: 'POST',
+                    data: {
+                        cName,
+                        eName,
+                        type1,
+                        country,
+                        filmLength,
+                        showtime,
+                        director,
+                        actor,
+                        synopsis,
+                        state,
+                    },
+                    success: msg => {
+                        // console.log(msg);
+
+                        if (msg) {
+                            alert("新增成功");
+                            location.hash = "#/system/film_list";
+                        }
+                    }
+                })
+            }
+        })
+    }
+}

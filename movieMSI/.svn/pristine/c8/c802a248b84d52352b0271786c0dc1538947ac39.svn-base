@@ -1,0 +1,73 @@
+const {
+    addchip,
+    delchip,
+    getChipByPage,
+    getall,
+    getOneChip,
+    updateChip,getOneChipByfilm
+} = require("../dao/chipDao")
+
+//根据分页获取渲染页面
+module.exports.getChipByPage = async function (chip) {
+    // console.log(student);    
+    const data = await getChipByPage(chip);
+    return data;
+}
+
+//增加排片
+module.exports.addchip = async function (chip) {
+    const data = await addchip(chip);
+    if (data._id) {
+        return data;
+    } else {
+        return false;
+    }
+}
+
+
+
+//通过id删除排片
+module.exports.delchip = async function (_id) {
+    // console.log(student);    
+    const data = await delchip(_id);
+    // console.log(data);
+    if (data.deletedCount == 1) {
+        return true;
+    } else {
+        return false;
+    }
+}
+//获取数据库所有
+module.exports.getall = async function () {
+    // console.log(student);    
+    const data = await getall();
+    return data;
+}
+
+//通过id去获取一个场次
+module.exports.getOneChip = async function (_id) {
+    const data = await getOneChip(_id);
+    if (data.length == 1) {
+        return data
+    } else {
+        return false;
+    }
+}
+
+//通过id去修改一个场次信息
+module.exports.updateChip = async function (chipById) {
+    const data = await updateChip(chipById);
+    if (data.ok == 1) {
+        return data
+    } else {
+        return false;
+    }
+}
+
+
+//查询事件。通过电影的Id俩查询已经排了此电影的影院
+module.exports.getOneChipByfilm = async function (_id) {
+    // console.log(student);    
+    const data = await getOneChipByfilm(_id);
+    return data;
+}

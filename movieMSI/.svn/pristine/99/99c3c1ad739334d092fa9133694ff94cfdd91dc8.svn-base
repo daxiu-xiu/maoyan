@@ -1,0 +1,32 @@
+const mongoose = require("mongoose");
+
+
+
+//新增排片选座
+module.exports.addselect = async (data) => {
+    // console.log("++++++++++++",data);
+    // let [arr] = data;
+    // console.log(arr);
+    // console.log(data.ProjectionsId);
+    const xx = await mongoose.model("seatModel").find({ ProjectionId: data.ProjectionsId })
+    // console.log(xx);
+    for (let i = 0; i <= xx.length - 1; i++) {
+        let xuanzuo = {
+            chipId:data._id,
+            seatsId:xx[i]._id,
+            state:false,
+        }
+        const data1 = await mongoose.model("selectModel").create(xuanzuo);
+        // console.log(data1);
+    }
+}
+
+
+
+//获取
+module.exports.getall = async ({chipId}) => {
+    const data = await mongoose.model("selectModel")
+    .find({chipId})
+    .populate("seatsId");
+    return data;
+}

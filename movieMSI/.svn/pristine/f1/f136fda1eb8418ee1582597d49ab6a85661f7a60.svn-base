@@ -1,0 +1,21 @@
+
+
+/* 弹窗ul */
+.scrm_paibiao{
+    display: flex;
+    list-style: none;
+    justify-content:space-between;
+}
+/* 弹窗li */
+.scrm_paibiao1{
+    margin-top: 0;
+    width: 35px;
+    height: 35px;
+    /* background-color: antiquewhite; */
+}
+.scrm_paibiao1>img{
+    width: 100%;
+}
+ .window{
+    /* top: 135px !important; */
+}

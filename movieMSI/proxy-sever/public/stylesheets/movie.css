@@ -1,0 +1,352 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  font-size: 16px;
+  color: black;
+  text-decoration: none;
+}
+
+#leftPart div,
+#leftPart input,
+#leftPart span {
+  border: 0 !important
+}
+
+/* (秀) */
+
+.accordion .accordion-header {
+  background-color: black;
+}
+
+.accordion .accordion-header-selected {
+  background-color: #ef4238
+}
+
+/* .accordion .accordion-header .panel-title{
+  background-color: #ef4238
+} */
+
+.titlle_bac {
+  width: 100%;
+  height: 100px;
+  /* background-image: linear-gradient(to right, #ef4238  0%, #ff9569 100%); */
+  background-color: black;
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  position: relative;
+}
+
+.accordion {
+  background: #fff;
+  overflow: hidden;
+}
+
+.title_out {
+  color: white;
+  position: absolute;
+  display: flex;
+  align-content: center;
+  right: 60px;
+  display: flex;
+  align-items: center;
+}
+
+.titlle_bac img {
+  margin-right: 10px;
+  height: 80px;
+  border-radius: 40px;
+  margin-left: 50px;
+}
+
+.title_out img {
+  height: 40px;
+  border-radius: 20px;
+}
+
+.title_one {
+  display: inline-block;
+  width: 3px;
+  height: 80px;
+  background: #c7a0fd;
+  margin-left: 59px;
+  margin-right: 20px;
+}
+
+.title_two {
+  font-size: 26px;
+  font-weight: 700;
+  color: white;
+}
+
+li {
+  margin-top: 20px;
+  font-size: 16px;
+  color: red;
+  padding-left: 25px;
+  list-style: none;
+  /* background: url('../imagesAll/liebiao_2.png') no-repeat 1px 2px */
+}
+
+/* 表格点击颜色变红 (秀)*/
+
+.datagrid-row-selected {
+  background-color: #ef4238
+}
+
+.panel-header {
+  /* background-color: black !important; */
+  /* background-color: rgb(165, 114, 114) !important; */
+}
+
+#leftPart .panel-body {
+  /* background-color: black !important; */
+  /* background-color: #3a3a6e !important; */
+}
+
+.layout-body {
+  /* background-color: black !important; */
+  /* background-color: #3a3a6e; */
+}
+
+.accordion {
+  /* background-color: black !important; */
+  /* background-color: #3a3a6e; */
+}
+
+#rightPart {
+  /* background-color: rgb(224,255,255) !important; */
+  /* background-color: black !important; */
+  /* background-color: #f8f4f5 !important; */
+  /* background: url("../imagesAll/right.jpg") !important; */
+  /* background-size: 100% !important; */
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* justify-content: center; */
+}
+
+#menu {
+  border: 1px solid #fad4a2
+}
+
+.accordion,
+.panel-last>.accordion-header {
+  border: 1px solid #efeeea
+}
+
+#leftPart div {
+  border: 1px solid gray
+}
+
+/* .panel{
+  text-align: center !important;
+} */
+
+#leftPart .panel-title {
+  font-size: 18px !important;
+}
+
+#id {
+  font-size: 20px !important;
+}
+
+.panel-header {
+  background-repeat: no-repeat !important;
+  display: flex;
+  align-items: center;
+  /* background-repeat-x: no-repeat !important; */
+}
+
+.panel-body-noheader {
+  border: none !important;
+}
+
+.layout-split-west {
+  border: 0px !important;
+}
+
+/* 输入框文字 */
+
+.textbox-text,
+.textbox,
+.textbox-prompt {
+  font-size: 16px !important;
+}
+
+/* 图标 */
+
+.panel-icon {
+  height: 40px;
+  width: 40px;
+  border-radius: 20px;
+  left: 15px;
+  top: 33%;
+}
+
+/* 文字 */
+
+.panel-with-icon {
+  padding-left: 54px;
+}
+
+.accordion-header {
+  height: 68px;
+}
+
+/* 登录样式 */
+
+.loginAll,
+.registerAll {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 800px;
+  position: relative;
+  background: url("../imagesAll/girl.jpg");
+  background-size: 100%;
+}
+
+.loginAll a {
+  color: green;
+}
+
+.loginAll #loginLogo,
+.registerAll #registerLogo {
+  height: 80px;
+  border-radius: 40px;
+}
+
+.loginAll .loginlittle,
+.registerAll .registerlittle {
+  background: rgba(33, 33, 33, 0.5);
+  width: 400px;
+  padding: 20px;
+  height: 400px;
+  box-sizing: border-box;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.loginAll .loginlittle span,
+.registerAll .registerlittle span {
+  font-size: 25px;
+  color: #ef4238
+}
+
+/* 修改用户的窗口样式 */
+
+.changeUser {
+  margin: 0 auto;
+  background-color: antiquewhite;
+  width: 400px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.changeUser span {
+  font-size: 20px;
+}
+
+.changeUser p {
+  font-size: 30px;
+}
+
+/* 电影页面的样式 */
+
+/* 电影列表 */
+
+/*  */
+
+#styFilm_list table {
+
+/* background-color: green !important; */
+
+}
+
+#styFilm_list>div .datagrid-wrap,#styFilm_list #styFilm_list_one{
+  background-color: rgba(191, 141, 190, 0.1) !important;
+}
+#styFilm_list #warp .datagrid-header-inner tbody,#styFilm_list #warp .datagrid-header-inner tr{
+  background-color: rgba(191, 141, 190, 0) !important;
+}
+
+#styFilm_list>#warp>.datagrid .datagrid-view2 .datagrid-body td {
+  height: 150px;
+}
+#styFilm_list img{
+  height: 150px !important;
+}
+
+#styFilm_list>#warp>.datagrid .datagrid-view2 .datagrid-body td div {
+  font-size: 18px;
+  color: #ef4238;
+  height: 130px;
+}
+
+#styFilm_list>#warp>.datagrid .datagrid-view2 img {
+  height: 140px;
+}
+
+#styFilm_list #styFilm_list_one {
+  position: fixed;
+  z-index: 55;
+  left: 580px;
+  top: 100px;
+}
+
+#styFilm_list #styFilm_list_one .searchbox {
+  width: 500px !important;
+}
+
+#styFilm_list #styFilm_list_one span {
+  font-size: 16px;
+}
+
+/* 增加电影 */
+
+.movieADD {
+  width: 800px;
+  /* height: 800px; */
+  margin-left: 300px;
+  border-radius: 20px;
+  background-color: rgba(6, 58, 167, 0.5) !important;
+}
+
+.movieADD>div {
+  padding: 0 !important;
+}
+
+.movieADD #left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.movieADD label {
+  font-size: 15px;
+  color: #fad4a9;
+  /* color: black */
+}
+
+/* 表格 */
+
+.datagrid-wrap {
+  background-color: rgba(191, 141, 190, 0.1) !important;
+}
+
+/* 设置表头的字体颜色*/
+
+.datagrid-header-row {
+  color: red;
+}

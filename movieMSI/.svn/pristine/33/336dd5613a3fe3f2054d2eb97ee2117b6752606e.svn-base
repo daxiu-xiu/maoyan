@@ -1,0 +1,22 @@
+const { film_add,get,getall } = require('../dao/filmDao');
+// 新增电影
+module.exports.film_add = async function (film) {
+    const data = await film_add(film);
+    return data;
+}
+// fenye获取电影数据
+module.exports.get = async function (film) {
+    // console.log(student);    
+    const data = await get(film);
+    return data;
+
+}
+
+
+// 获取suoyou电影数据
+module.exports.getall = async function () {
+    // console.log(student);    
+    const data = await getall();
+    return data;
+
+}

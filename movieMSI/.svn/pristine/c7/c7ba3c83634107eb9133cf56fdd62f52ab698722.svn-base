@@ -1,0 +1,25 @@
+
+const {fang_idshuju,shanzuo,qunabu} = require("../dao/scrm_seatDao");
+
+
+//获取
+module.exports.fang_idshuju = async function (ting_id) {
+    const data = await fang_idshuju(ting_id);
+    return data;
+}
+
+//删除座位
+module.exports.shanzuo = async function (ting_id) {   
+    const data = await shanzuo(ting_id)
+    // console.log("+++++++++++++",data);
+    
+    if (data.ok == 1) {
+        return true;
+    }
+    return false;
+}
+
+
+
+
+

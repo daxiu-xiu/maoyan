@@ -1,0 +1,36 @@
+const {
+    addchip,
+    delchip,
+    getChipByPage
+} = require("../dao/chipDao")
+
+//获取渲染页面
+module.exports.getChipByPage = async function (chip) {
+    // console.log(student);    
+    const data = await getChipByPage(chip);
+    return data;
+}
+
+//增加排片
+module.exports.addchip = async function (chip) {
+    const data = await addchip(chip);
+    if (data._id) {
+        return data;
+    } else {
+        return false;
+    }
+}
+
+
+
+//通过id删除排片
+module.exports.delchip = async function (_id) {
+    // console.log(student);    
+    const data = await delchip(_id);
+    // console.log(data);
+    if (data.deletedCount == 1) {
+        return true;
+    } else {
+        return false;
+    }
+}

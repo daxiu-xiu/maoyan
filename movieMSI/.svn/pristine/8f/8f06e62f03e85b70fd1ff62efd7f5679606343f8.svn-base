@@ -1,0 +1,68 @@
+export default class Film_update {
+    constructor() {
+        this.render();
+    }
+    // 修改电影
+    render() {
+        const film_update = `
+        <div id="update" style="width:500px;margin:auto;">
+            <p>
+                <input class="easyui-textbox" id="cName" data-options="label:'中文名:' " style="width:300px">
+            </p>
+            <p>
+                <input class="easyui-textbox" id="eName" data-options="label:'英文名:'" style="width:300px">
+            </p>
+            <p>
+                <input class="easyui-textbox" id="type" name="type" data-options="label:'类型:'" style="width:300px;">
+            </p>
+            <p>
+                <input class="easyui-textbox" id="country" data-options="label:'制片国:'" style="width:300px">
+            </p>
+            <p>
+                <input class="easyui-textbox" id="filmLength" data-options="label:'片长:'" style="width:300px">
+            </p>
+            <p>
+                <input class="easyui-datebox" id="showtime" type="text" data-options="label:'上映时间:'"
+                    style="width:200px"></input>
+            </p>
+            <p>
+                <input class="easyui-textbox" id="director" data-options="label:'导演:'" style="width:300px">
+            </p>
+            <p>
+                <input class="easyui-textbox" id="actor" data-options="label:'演员:'" style="width:300px">
+            </p>
+            <p>
+                <input class="easyui-textbox" id="synopsis" type="text" data-options="multiline:'true',label:'简介:' "
+                    style="width:350px;height:60px">
+            </p>
+            <p>
+                <select class="easyui-combobox" id="state" name="dept" data-options="label:'所属状态:'"
+                    style="width:250px;">
+                    <option value="">正在热映</option>
+                    <option>即将上映</option>
+                </select>
+            </p>
+
+            <div style="width: 500px; display: flex; justify-content: space-between;">
+                <div>
+                    <label>选择海报图:</label>
+                    <input class="easyui-filebox" data-options="buttonText:'浏览...'" style="width:47px">
+                    <input class="easyui-textbox" id="images" data-options="multiline:'true'"
+                        style="width:200px;height:150px;border: 1px solid;">
+                </div>
+                <div>
+                    <label>选择主页图:</label>
+                    <input class="easyui-filebox" data-options="buttonText:'浏览...'" style="width:47px">
+                    <input class="easyui-textbox" id="images" data-options="multiline:'true'"
+                        style="width:200px;height:150px;border: 1px solid;">
+                </div>
+            </div>
+            <p>
+                <a id="addBtn" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'">确认修改</a>
+            </p>
+        </div>
+        `;
+        $("#").html(film_update);
+    }
+
+}

@@ -1,0 +1,81 @@
+export default class Film_list {
+    constructor() {
+        this.render();
+        this.handel()
+    }
+    render() {
+        const film_list = `
+        <div>
+            <!-- 新增按钮 -->
+            <a id="btn" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'">新增</a>
+            <!-- 下拉搜索框 -->
+            <input id="ss" class="easyui-searchbox" style="width:200px"
+                data-options="prompt:'请输入查询内容',menu:'#searchType'"></input>
+            <div id="searchType" style="width:150px">
+                <div data-options="name:'all'">中文名</div>
+                <div data-options="name:'sports'">类型</div>
+                <div data-options="name:'sports'">制片国家</div>
+                <div data-options="name:'sports'">片长</div>
+            </div>
+        </div>
+
+        <!--  表 格  -->
+        <table id="table">
+        </table>
+        <!-- 页数 -->
+        <div id="page" style="background:#efefef;border:1px solid #ccc;"></div>
+        `;
+        $("#rightPart").html(film_list);
+    }
+    handel(){
+        
+        $('#table').datagrid({
+            toolbar: '#toolbar',
+            data: [
+                {
+                    'id': '1', 'images': '0', 'cName': '狂暴凶狮', 'eName': 'Prooi', 'type': '动画',
+                    'country': '荷兰', 'filmLength': '105分钟', 'showtime': '2019/02/20', 'director': '迪克',
+                    'actor': '艾比', 'synopsis': '在阿姆斯特丹...', 'state': '正在热映'
+                }],
+            columns: [[
+                { field: 'id', title: '编号', width: 40, align: "center" },
+                { field: 'images', title: '图片', width: 100, align: "center" },
+                { field: 'cName', title: '中文名', width: 100, align: "center" },
+                { field: 'eName', title: '英文名', width: 100, align: "center" },
+                { field: 'type', title: '类型', width: 80, align: "center" },
+                { field: 'country', title: '制片国家', width: 80, align: "center" },
+                { field: 'filmLength', title: '片长', width: 80, align: "center" },
+                { field: 'showtime', title: '上映时间', width: 100, align: "center" },
+                { field: 'director', title: '导演', width: 80, align: "center" },
+                { field: 'actor', title: '演员', width: 80, align: "center" },
+                { field: 'synopsis', title: '简介', width: 150, align: "center" },
+                { field: 'state', title: '所属状态', width: 80, align: "center" },
+                {
+                    field: 'handle', title: '操作', width: 150, align: 'center',
+                    formatter: function (value, row, index) {
+                        return `
+                            <a href="#" class="easyui-linkbutton update" data-id="${row.id}" data-option="iconCls:'icon-pencil'" >修改</a>
+                            <a href="#" class="easyui-linkbutton remove" data-id="${row.id}" data-option="iconCls:'icon-remove'">删除</a>
+                        `
+                    }
+                }
+            ]],
+            onLoadSuccess: function () {
+              
+                $.parser.parse('#bigbox');
+            }
+        });
+            
+            $('#page').pagination({
+             
+                total: 20,
+              
+                pageSize: 5,
+                
+                pageList: [5, 10, 15],
+                
+                displayMsg: "从第{from}条到第{to}条,共计{total}条",
+            });
+
+    }
+}

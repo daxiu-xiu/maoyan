@@ -1,0 +1,29 @@
+
+const {backUserrsDao,
+    getbackUserrsDao,
+    removebackUsersDao}=require("../dao/backUsers_Dao");
+
+//注册
+module.exports.backUsers_sever = async function (users) {
+    const data_dao = await backUserrsDao(users);
+    if (data_dao._id) {
+        return true
+    } else {
+        return false
+    }
+}
+// 获取渲染、
+module.exports.getbackUsers_sever = async function (users) {
+    const data_dao = await getbackUserrsDao(users);
+   return data_dao;
+}
+
+module.exports.removebackUsers_sever = async function (users) {
+ 
+    const data_dao = await removebackUsersDao(users);
+    if(data_dao.ok){
+        return true
+    }
+    else{
+        return false
+    }}

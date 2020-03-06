@@ -1,0 +1,18 @@
+const {daoAddCinema,getCinemasDao,getALL_cinemasDao}=require("../dao/daoCinema")
+module.exports.addCinemaServis=async addCinemaData=>
+{
+    const data=await daoAddCinema(addCinemaData);
+    return data;
+}
+// 分页获取
+module.exports.getCinemas=async termData=>
+{
+    const data=await getCinemasDao(termData);
+    return data;
+}
+// 获取所有
+module.exports.getALL_cinemas=async ()=>
+{
+    const data=await getALL_cinemasDao();
+    return data;
+}

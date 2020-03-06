@@ -1,0 +1,11 @@
+
+
+const {getall} =require("../dao/selectDao.js");
+
+
+//通过排片id获取排片座位的数据
+module.exports.getall = async function (chipId) {
+    // console.log(student);    
+    const data = await getall(chipId);
+    return data;
+}

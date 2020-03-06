@@ -1,0 +1,48 @@
+
+
+/* 弹窗ul */
+.scrm_paibiao{
+    display: flex;
+    list-style: none;
+    justify-content:space-between;
+}
+/* 弹窗li */
+.scrm_paibiao1{
+    margin-top: 0;
+    width: 35px;
+    height: 35px;
+    /* background-color: antiquewhite; */
+}
+.scrm_paibiao1>img{
+    width: 100%;
+}
+ .window,.window-shadow{
+    top: 160px !important;
+    left: 550px !important;
+}
+
+/* 背景图 */
+#scrm_zhenti{
+    background-size: 100% 100%;
+    height: 100%;
+}
+#scrm_zhenti1{
+    margin-top: 32px
+}
+
+
+/*  */
+#yingxia{
+    width: 260px;
+    height: 29px;
+}
+
+.easyui-fluid{
+    margin-top: 17px !important;
+}
+.textbox-label{
+    margin-top: 18px !important;
+}
+#xuanyinwenzi{
+    margin-right: 22px;
+}

@@ -1,0 +1,22 @@
+var express = require('express');
+var router = express.Router();
+
+const {
+    addchip,
+} = require("../moveService/chipService")
+
+//  //获取渲染页面
+// router.get('/', async function (req, res, next) {
+//     const student = req.query;
+//     // console.log(student);
+//     const data = await get(student);
+//     res.send(data);
+// });
+
+
+//新增排片
+router.post("/", async function (req, res, next) {
+    const data = await addchip(req.body); 
+    res.send(data);
+})
+module.exports = router;

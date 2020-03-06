@@ -1,0 +1,14 @@
+const mongoose = require("mongoose");
+
+
+const backUsers = new mongoose.Schema({
+    //后台用户的姓名
+    back_name: String,
+    //后台用户的年龄
+    back_age: String,
+    //后台用户的性别
+    back_gender: String,
+})
+
+
+mongoose.model("backUsersModel", backUsers, "backUsers");

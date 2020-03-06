@@ -1,0 +1,123 @@
+export default class Chiplist {
+    constructor() {
+        this.render();
+        this.tbRender();
+        $.parser.parse();
+    }
+    render() {
+        const html = `<div id="chip_header">
+        <a id="" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'">新增排片</a>
+        <select id="" class="easyui-combobox" data-options="label:'选择电影:',panelHeight:'auto'" style="width:280px;">
+        </select>
+        <select id="" class="easyui-combobox" data-options="label:'选择影院:',panelHeight:'auto'" style="width:280px;">
+        </select>
+        <select id="" class="easyui-combobox" data-options="label:'放映时间:',panelHeight:'auto'" style="width:280px;">
+        </select>
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">查询</a>  
+    </div>
+    <div id="chip_warp"  style="width: 900px" >
+        <table id="chip_tb" data-option="fitColumns:true,scrollbarSize" ></table>
+        <div id="chip_paging" style="background:#efefef;border:1px solid #ccc;"></div> 
+    </div>`
+        $("#rightPart").html(html);
+    }
+    //表格渲染
+    tbRender() {
+        $('#chip_tb').datagrid({
+            toolbar: "#chip_header",
+            data: [{
+                    xuhao: 1,
+                    _id: 1,
+                    name: "少年的你",
+                    age: "18",
+                    gender: "巨幕厅",
+                    time: '2019-10-9 12:30',
+                    sove: '$20',
+                    handle: ""
+                },
+                {
+                    xuhao: 1,
+                    _id: 1,
+                    name: "少年的你",
+                    age: "18",
+                    gender: "巨幕厅",
+                    time: '2019-10-9 12:30',
+                    sove: '$20',
+                    handle: ""
+                },
+                {
+                    xuhao: 1,
+                    _id: 1,
+                    name: "少年的你",
+                    age: "18",
+                    gender: "巨幕厅",
+                    time: '2019-10-9 12:30',
+                    sove: '$20',
+                    handle: ""
+                },
+            ],
+            columns: [
+                [{
+                        field: 'xuhao',
+                        title: '序号',
+                        width: "5%",
+                        align: 'center'
+                    },
+                    {
+                        field: '_id',
+                        title: '排片编号',
+                        width: '20%',
+                        align: 'center'
+                    },
+                    {
+                        field: 'name',
+                        title: '电影',
+                        width: '10%',
+                        align: 'center'
+                    },
+                    {
+                        field: 'age',
+                        title: '影院',
+                        width: '10%',
+                        align: 'center'
+                    },
+                    {
+                        field: 'gender',
+                        title: '放映厅',
+                        width: '10%',
+                        align: 'center'
+                    },
+                    {
+                        field: 'time',
+                        title: '放映时间',
+                        width: '15%',
+                        align: 'center'
+                    },
+                    {
+                        field: 'sove',
+                        title: '票价',
+                        width: '10%',
+                        align: 'center'
+                    },
+                    {
+                        field: 'handle',
+                        title: '操作',
+                        width: '20%',
+                        align: 'center',
+                        formatter: function (value, row, index) {
+                            return `<a href='#/system/updatechip' class="easyui-linkbutton rev" data-options="iconCls:'icon-help'" data-id=${row.id}>修改</a>
+                                <a href="#"  class="easyui-linkbutton del" data-options="iconCls:'icon-remove'"  data-id=${row.id}>删除</a>`
+                        }
+                    }
+                ]
+            ],
+        })
+
+        $('#chip_paging').pagination({
+            total: 200,
+            pageSize: 4,
+            pageList: [2, 4, 6, 8, 10],
+            displayMsg: `当前页面是第{from} 条到 {to} 条，数据总计：{total} 条`
+        });
+    }
+}

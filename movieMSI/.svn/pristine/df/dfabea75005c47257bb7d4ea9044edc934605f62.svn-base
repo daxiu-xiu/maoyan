@@ -1,0 +1,26 @@
+var express = require('express');
+var router = express.Router();
+
+const { addProjection, obtainProjection, removeProjection } = require("../moveService/scrm_ProjectionService.js");
+
+
+//删除
+router.delete('/:_id', async function (req, res, next) {
+    res.send(await removeProjection(req.params));
+});
+
+
+//获取
+router.get('/', async function (req, res, next) {
+    res.send(await obtainProjection(req.query));
+});
+
+
+
+//新增
+router.post('/', async function (req, res, next) {
+    // console.log(req.body);
+    res.send(await addProjection(req.body));
+});
+
+module.exports = router;

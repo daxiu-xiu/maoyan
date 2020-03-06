@@ -1,0 +1,8 @@
+
+const {fang_idshuju} = require("../dao/scrm_seatDao");
+
+
+module.exports.fang_idshuju = async function (ting_id) {
+    const data = await fang_idshuju(ting_id);
+    return data;
+}

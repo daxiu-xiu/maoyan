@@ -1,0 +1,56 @@
+const { film_add,
+    get,
+    getAny,
+    getall,
+    del,
+    getdata,
+    film_update } = require('../dao/filmDao');
+// 新增电影
+module.exports.film_add = async function (film) {
+    const data = await film_add(film);
+    return data;
+}
+// 分页获取电影数据
+module.exports.get = async function (film) {
+    if(film.search_val){
+        const data = await getAny(film);
+        return data
+    }
+    else{
+        const data = await get(film);
+        return data;
+    }
+   
+}
+
+// 获取所有电影数据
+module.exports.getall = async function () {
+    const data = await getall();
+    return data;
+}
+// // 删除电影
+module.exports.del = async function (deletefilm) {
+    const data = await del(deletefilm);
+    // console.log(data);
+    if (data.deletedCount == 1) {
+        return true;
+    } else {
+        return false;
+    }
+}
+// 获取数据渲染到修改页面
+module.exports.getdata = async function (_id) {
+    const data = await getdata(_id);
+    // console.log(data);
+    if (data.length == 1) {
+        return data
+    } else {
+        return false;
+    }
+}
+// 确认修改
+module.exports.film_update1 = async function (film) {
+    console.log(film);
+    const data = await film_update(film);
+    return data;
+}

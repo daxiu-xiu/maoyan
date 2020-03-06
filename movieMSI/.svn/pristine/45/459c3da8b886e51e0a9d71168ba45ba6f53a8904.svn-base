@@ -1,0 +1,113 @@
+*{
+  margin: 0;
+  padding: 0;
+  border:0 !important
+}
+a{
+  font-size: 20px;
+  color: red;
+  text-decoration: none;
+}
+
+.titlle_bac{
+  width: 100%;
+  height: 100px;
+  background-color: #ef4238;
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  position: relative;
+}
+.title_out{
+  color: white;
+  position: absolute;
+  display: flex;
+  align-content: center;
+  right: 60px;
+  display: flex;
+  align-items: center;
+ 
+}
+.titlle_bac img{
+  margin-right: 10px;
+  height: 80px;
+  margin-left: 50px;
+}
+.title_out img{
+  height:40px;
+}
+.title_one{
+  display:inline-block;
+  width: 3px;
+  height: 80px;
+  background:white;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.title_two{
+  font-size: 40px;
+  color: white;
+}
+li{
+  margin-top: 20px;
+  font-size: 20px;
+  color: red;
+}
+.panel-header{
+  background-color: black !important;
+}
+#leftPart .panel-body{
+  background-color: black !important;
+}
+.layout-body{
+  background-color: black ;
+}
+.accordion{
+  background-color: black
+}
+#rightPart{
+  background-color: gray !important ;
+}
+.panel-header, .panel-body{
+  border: 3px solid red;
+  /* border-color:red; */
+}
+#menu{
+  border: 1px solid black
+}
+.accordion,.panel-last >.accordion-header{
+  border: 1px solid black
+}
+#leftPart div{
+  border: 1px solid gray
+}
+#leftPart .panel-title{
+  font-size: 25px !important;
+}
+#id{
+  font-size: 20px !important;
+}
+.panel-header{
+  background-repeat: no-repeat !important;
+  display:flex;
+  align-items: center;
+  /* background-repeat-x: no-repeat !important; */
+}
+
+/* 图标 */
+.panel-icon{
+  height: 40px;
+  width: 40px;
+  border-radius: 20px;
+  left: 15px;
+  top: 33%;
+}
+/* 文字 */
+.panel-with-icon{
+padding-left: 54px;
+}
+
+
+.accordion-header{
+  height: 68px;
+}

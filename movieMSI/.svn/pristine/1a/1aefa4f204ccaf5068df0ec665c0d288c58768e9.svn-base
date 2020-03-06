@@ -1,0 +1,20 @@
+const mongoose = require("mongoose");
+
+
+
+//新增座位
+module.exports.addseat = async (ProjectionId) => {
+    // console.log("111", ProjectionId);
+    for (let i = 1; i <= 10; i++) {
+        for (let j = 1; j <= 10; j++) {
+            let seatshuju = {
+                scrm_row:i,
+                scrm_col:j,
+                ProjectionId
+            }
+            // console.log(data);
+             data = await mongoose.model("seatModel").create(seatshuju);
+            //  console.log(data);
+        }
+    }
+}

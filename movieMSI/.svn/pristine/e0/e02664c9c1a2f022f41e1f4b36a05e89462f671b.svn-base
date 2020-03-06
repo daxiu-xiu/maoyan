@@ -1,0 +1,29 @@
+var express = require('express');
+var router = express.Router();
+
+const {
+    addchip,
+    delchip,
+    getChipByPage
+} = require("../moveService/chipService")
+
+ //获取排片渲染页面
+router.get('/', async function (req, res, next) {
+    const data = await getChipByPage(req.query);
+    res.send(data);
+});
+
+
+//新增排片
+router.post("/", async function (req, res, next) {
+    const data = await addchip(req.body);
+    res.send(data);
+})
+
+
+//删除排片
+router.delete("/:_id", async function (req, res, next) {
+    const data = await delchip(req.params);
+    res.send(data);
+})
+module.exports = router;

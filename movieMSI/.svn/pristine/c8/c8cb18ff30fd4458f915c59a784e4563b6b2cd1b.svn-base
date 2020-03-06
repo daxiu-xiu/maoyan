@@ -1,0 +1,119 @@
+/* 弹窗ul */
+.scrm_paibiao {
+    display: flex;
+    list-style: none;
+    justify-content: space-between;
+}
+
+/* 弹窗li */
+.scrm_paibiao1 {
+    margin-top: 0;
+    width: 35px;
+    height: 35px;
+    /* background-color: antiquewhite; */
+}
+
+.scrm_paibiao1>img {
+    width: 100%;
+}
+
+.window,
+.window-shadow {
+    top: 160px !important;
+    left: 550px !important;
+}
+
+#dd {
+    display: flex;
+    justify-content: space-between;
+    background: linear-gradient(45deg, black, transparent);
+    visibility: hidden;
+
+}
+
+#dd2 {
+    width: 30px;
+    background-color: aquamarine;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border-radius: 15px;
+    visibility: hidden;
+    background: repeating-linear-gradient(45deg, black, transparent 100px);
+    color: orangered;
+}
+
+#dd2>p {
+    margin-top: -5px;
+    text-align: center;
+}
+
+/* 背景图 */
+#scrm_zhenti {
+    background-size: 100% 100%;
+    height: 100%;
+}
+
+#scrm_zhenti1 {
+    margin-top: 26px
+}
+
+.datagrid-body {
+    width: 733px;
+}
+
+/*  影院搜索框下拉*/
+#yingxia {
+    width: 258px;
+    height: 29px;
+}
+
+.easyui-fluid {
+    margin-top: 17px !important;
+}
+
+.textbox-label {
+    margin-top: 18px !important;
+}
+
+#xuanyinwenzi {
+    margin-right: 22px;
+}
+
+
+@keyframes xx {
+    0% {
+        border: 5px solid royalblue;
+    }
+
+    30% {
+        border: 2px solid chartreuse;
+    }
+
+    60% {
+        border: 3px solid indianred;
+    }
+
+    70% {
+        border: 4px solid black;
+    }
+
+    100% {
+        border: 5px solid pink;
+    }
+}
+
+/*  分页动画*/
+#scrm_pp1 {
+    /* border: 5px solid royalblue !important; */
+    animation: xx linear 3s infinite;
+}
+
+
+.datagrid-wrap {
+    border-radius: 32px;
+}
+
+.loginPanel {
+    border-radius: 15px;
+}

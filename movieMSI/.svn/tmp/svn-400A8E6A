@@ -1,0 +1,30 @@
+var express = require('express');
+var router = express.Router();
+
+// const {getall} = require("../moveService/selectService");
+const {
+    getall
+} = require("../moveService/selectService");
+
+
+
+
+//通过排片id获取排片座位的数据
+router.post('/:chipId', async function (req, res, next) {
+    // console.log(req.params);
+    const data = await getall(req.params);
+    res.send(data);
+});
+
+
+//改变状态值
+router.post('/:state', async function (req, res, next) {
+    // console.log(req.params);
+    // const data = await getall(req.params);
+    // res.send(data);
+});
+
+
+
+
+module.exports = router;
